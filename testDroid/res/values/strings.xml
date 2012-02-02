@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, TestDroidActivity!</string>
+    <string name="app_name">TestDroid</string>
+    <string name="appFrmWake">Wake</string>
+    <string name="appFrmStandby">Standby</string>
+    <string name="appFrmHibernate">Hibernate</string>
+    <string name="appFrmAction">Action</string>
+
+</resources>
