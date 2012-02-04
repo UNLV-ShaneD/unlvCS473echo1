@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="deployables collaboration and responsibility diagram.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lstart"
+       style="overflow:visible">
+      <path
+         id="path3210"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none"
+         transform="scale(0.8) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;">
+      <path
+         id="path3213"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="297.3908"
+     inkscape:cy="761.63924"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1058"
+     inkscape:window-x="1912"
+     inkscape:window-y="38" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="103.29192"
+       y="403.19589"
+       id="text2383"><tspan
+         sodipodi:role="line"
+         id="tspan2385"
+         x="103.29192"
+         y="403.19589">client application</tspan><tspan
+         sodipodi:role="line"
+         x="103.29192"
+         y="420.69589"
+         id="tspan4526">-process standby commands</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="244.90469"
+       y="219.51636"
+       id="text2387"><tspan
+         sodipodi:role="line"
+         id="tspan2389"
+         x="244.90469"
+         y="219.51636">webserver</tspan><tspan
+         sodipodi:role="line"
+         x="244.90469"
+         y="237.01636"
+         id="tspan2417">-manager users</tspan><tspan
+         sodipodi:role="line"
+         x="244.90469"
+         y="254.51636"
+         id="tspan2421">-manage client applications</tspan><tspan
+         sodipodi:role="line"
+         x="244.90469"
+         y="272.01636"
+         id="tspan2423">-send standby/wake commands</tspan><tspan
+         sodipodi:role="line"
+         x="244.90469"
+         y="289.51636"
+         id="tspan2425" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="435.69867"
+       y="373.71606"
+       id="text2391"><tspan
+         sodipodi:role="line"
+         id="tspan2393"
+         x="435.69867"
+         y="373.71606">phone</tspan><tspan
+         sodipodi:role="line"
+         x="435.69867"
+         y="391.21606"
+         id="tspan2427">-send standby/wake commands</tspan><tspan
+         sodipodi:role="line"
+         x="435.69867"
+         y="408.71606"
+         id="tspan2429">-set GPS boundaries</tspan><tspan
+         sodipodi:role="line"
+         x="435.69867"
+         y="426.21606"
+         id="tspan2431">-automatic hibernate/standby on GPS</tspan></text>
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.625;stroke-linecap:round;stroke-linejoin:bevel;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:1.875, 0.625;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 448.61919,354.29346 L 408.71819,288.63354"
+       id="path2433" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.625;stroke-linecap:round;stroke-linejoin:bevel;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:1.875, 0.625;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 239.01259,289.64369 L 162.24099,385.10311"
+       id="path2435" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="437.00238"
+       y="322.9787"
+       id="text4500"><tspan
+         sodipodi:role="line"
+         x="437.00238"
+         y="322.9787"
+         id="tspan4512">send standby/wake commands</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="40.382252"
+       y="337.20837"
+       id="text4522"><tspan
+         sodipodi:role="line"
+         x="40.382252"
+         y="337.20837"
+         id="tspan4524">send standby commands</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="58.19524"
+       y="103.27055"
+       id="text4532"><tspan
+         sodipodi:role="line"
+         id="tspan4534"
+         x="58.19524"
+         y="103.27055">client hardware</tspan><tspan
+         sodipodi:role="line"
+         x="58.19524"
+         y="120.77055"
+         id="tspan4536">-process wake commands</tspan></text>
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.625;stroke-linecap:round;stroke-linejoin:bevel;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:1.875, 0.625;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 241.03289,193.6792 L 197.59629,140.14111"
+       id="path4548" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="71.832451"
+       y="179.032"
+       id="text5065"><tspan
+         sodipodi:role="line"
+         id="tspan5067"
+         x="71.832451"
+         y="179.032">send wake commands</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5069"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Bitstream Vera Sans;font-style:normal;font-weight:normal;font-size:14"><flowRegion
+         id="flowRegion5071"><rect
+           id="rect5073"
+           width="58.57143"
+           height="39.285713"
+           x="-91.428574"
+           y="77.362183" /></flowRegion><flowPara
+         id="flowPara5075"></flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="17.857145"
+       y="42.362183"
+       id="text5077"><tspan
+         sodipodi:role="line"
+         id="tspan5079"
+         x="17.857145"
+         y="42.362183"
+         style="font-size:24px">Deployables collaboration and responsibilities</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.625;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:1.875, 0.625;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5081"
+       width="182.14285"
+       height="43.57143"
+       x="46.42857"
+       y="88.790756" />
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.625;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:1.875, 0.625;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5083"
+       width="233.57143"
+       height="80"
+       x="226.42857"
+       y="203.07646" />
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.625;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:1.875, 0.625;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5085"
+       width="256.42856"
+       height="72.85714"
+       x="422.85715"
+       y="357.36218" />
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.625;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:1.875, 0.625;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5087"
+       width="202.85715"
+       height="40.714287"
+       x="92.85714"
+       y="388.79074" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.62500000000000000;stroke-linecap:round;stroke-linejoin:bevel;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:1.87500000000000000, 0.62500000000000000;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#Arrow1Lstart)"
+       d="M 432.09336,353.76357 L 392.19236,288.10365"
+       id="path5109" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="326.75754"
+       y="328.84238"
+       id="text5634"><tspan
+         sodipodi:role="line"
+         x="326.75754"
+         y="328.84238"
+         id="tspan5636">authenticate</tspan></text>
+  </g>
+</svg>
