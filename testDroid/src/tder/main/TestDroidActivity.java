@@ -13,21 +13,33 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
-public class TestDroidActivity extends Activity {
+public class TestDroidActivity extends ListActivity {
+	
+	static String[] TARGETS = new String[] {
+		"shaneserv", "shanenet", "sed"
+	};
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, TARGETS));
+        ListView listView = getListView();
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         final TextView frmTV = (TextView)findViewById(R.id.textView1);
         final Button frmButWake = (Button)findViewById(R.id.buttonWake);
+        
 
         frmButWake.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v)
