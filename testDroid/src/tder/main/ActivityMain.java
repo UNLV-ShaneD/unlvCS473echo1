@@ -37,10 +37,10 @@ public class ActivityMain extends TabActivity {
 		tabHost.addTab(spec);
 
 		// Do the same for the other tabs
-		intent = new Intent().setClass(this, ActivityManage.class);
+		intent = new Intent().setClass(this, ActivityConfigure.class);
 		spec = tabHost
-				.newTabSpec("manage")
-				.setIndicator("Manage")
+				.newTabSpec("configure")
+				.setIndicator("Configure")
 				.setContent(intent);
 		tabHost.addTab(spec);
 

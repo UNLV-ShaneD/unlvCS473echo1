@@ -17,24 +17,22 @@ public class MyLocationListener implements LocationListener {
 	Context context;
 	
 	float gpsDistanceResults[];
-	Location homeLocation;
 	ServiceConfiguration configuration;
 	
 	public MyLocationListener(Context context){
 		this.context = context;
-		homeLocation = new Location("Home");
-		homeLocation.setLatitude(30);
-		homeLocation.setLongitude(30);
-		
 		gpsDistanceResults = new float[3];
 	}
 
 	/* (non-Javadoc)
-	 * @see android.location.LocationListener#onLocationChanged(android.location.Location)
+	 * Calculates if we are in the home zone - calls necessary procedures if status changes
 	 */
 	public void onLocationChanged(Location location) {
+		if (configuration == null)
+			return;
+		
 		// Calculate distance between home and current location
-		Location.distanceBetween(homeLocation.getLatitude(), homeLocation.getLongitude(), location.getLatitude(), location.getLongitude(), gpsDistanceResults);
+		Location.distanceBetween(configuration.homeLatitude, configuration.homeLongitude, location.getLatitude(), location.getLongitude(), gpsDistanceResults);
 
 		// Debug message output
 		String message =  "New GPS location: (" + location.getLongitude() + ", " + location.getLatitude() + ")\nDistance from home: " + gpsDistanceResults[0] + " meters.";

@@ -14,5 +14,12 @@
     <string name="appFrmHostAddress">IP Address / Hostname</string>
     <string name="appFrmMacAddress">MAC Address</string>
     <string name="appFrmDisplayName">Display Name</string>
+    <string name="appFrmHomeCoordinates">Home Coordinates</string>
+    <string name="appFrmLatitude">Latitude</string>
+    <string name="appFrmLongitude">Longitude</string>
+    <string name="appFrmRadius">Radius (meters)</string>
+    <string name="appFrmAuthentication">Authentication</string>
+    <string name="appFrmUserid">User ID</string>
+    <string name="appFrmPassword">Password</string>
 
 </resources>

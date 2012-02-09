@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityManage"
+            android:name=".ActivityConfigure"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
