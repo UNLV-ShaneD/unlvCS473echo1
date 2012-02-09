@@ -7,5 +7,12 @@
     <string name="appFrmStandby">Standby</string>
     <string name="appFrmHibernate">Hibernate</string>
     <string name="appFrmAction">Action</string>
+    <string name="appFrmComputer">Computer</string>
+    <string name="appFrmAdd">Add</string>
+    <string name="appFrmEdit">Edit</string>
+    <string name="appFrmRemove">Remove</string>
+    <string name="appFrmHostAddress">IP Address / Hostname</string>
+    <string name="appFrmMacAddress">MAC Address</string>
+    <string name="appFrmDisplayName">Display Name</string>
 
 </resources>

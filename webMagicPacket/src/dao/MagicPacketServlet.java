@@ -30,8 +30,8 @@ public class MagicPacketServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		WakeOnLan wol = new WakeOnLan();
-		wol.Wake("192.168.1.113", "00:24:8C:9E:17:B4");
+		MagicPacketer magicPacketer = new MagicPacketer();
+		magicPacketer.Wake("192.168.1.113", "00:24:8C:9E:17:B4");
 		
 		// Test page output
 		HttpSession session = request.getSession();
