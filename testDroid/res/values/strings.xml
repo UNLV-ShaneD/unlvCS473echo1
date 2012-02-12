@@ -17,7 +17,7 @@
     <string name="appFrmHomeCoordinates">Home Coordinates</string>
     <string name="appFrmLatitude">Latitude</string>
     <string name="appFrmLongitude">Longitude</string>
-    <string name="appFrmRadius">Radius (meters)</string>
+    <string name="appFrmRadius">Radius\n(meters)</string>
     <string name="appFrmAuthentication">Authentication</string>
     <string name="appFrmUserid">User ID</string>
     <string name="appFrmPassword">Password</string>
@@ -25,7 +25,7 @@
     <string name="appFrmServerHint">www.example.com</string>
     <string name="appFrmAuthenticationTest">Test authentication</string>
     <string name="appFrmAuthenticationWaiting">waiting...</string>
-    <string name="appFrmAuthenticationLogin">Log in</string>
+    <string name="appFrmAuthenticationLogin">Save and Log In</string>
     <string name="appFrmAuthenticationSuccess">Success</string>
     <string name="appFrmAuthenticationTimeout">Timeout</string>
     <string name="appFrmAuthenticationBadServer">Bad server</string>
@@ -33,5 +33,7 @@
     <string name="appFrmAuthenticationBadURI">Bad URI</string>
     <string name="appFrmAuthenticationBadGeneral">General fault</string>
     <string name="appFrmHomeRadiusHint">1 yard = 0.9144 meters</string>
+    <string name="save">Save</string>
+    <string name="currentCoordinates">Current Coordinates</string>
 
 </resources>

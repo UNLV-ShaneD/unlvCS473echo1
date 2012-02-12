@@ -3,7 +3,6 @@ package tder.main;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
 import android.location.LocationManager;
 import android.os.IBinder;
 import android.widget.Toast;
@@ -19,7 +18,7 @@ public class GpsService extends Service {
 	ServiceConfiguration configuration;
 	
 	LocationManager locationManager = null;
-	MyLocationListener myLocationListener = null;
+	GpsLocationListener myLocationListener = null;
 	
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -32,7 +31,7 @@ public class GpsService extends Service {
 		super.onCreate();
 		
 		// Create listner object to handle GPS events
-		myLocationListener = new MyLocationListener(this);
+		myLocationListener = new GpsLocationListener(this);
 		
 		Toast.makeText(this, "tder GPS service created", Toast.LENGTH_LONG).show();
 	}

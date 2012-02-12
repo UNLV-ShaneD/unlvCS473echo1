@@ -39,7 +39,12 @@ public class ServerInterfacer {
 	static public LoginCallback.ResultType Login(LoginData loginData) {
 		try {
 			// Perform get-based authentication
-			String html = Get(loginData.getAuthenticationString());
+			String authenticationString = loginData.getAuthenticationString();
+			
+			System.out.println("Using authentication string >" + authenticationString + "<");
+			
+			@SuppressWarnings("unused") // TODO: Parse return
+			String html = Get(authenticationString);
 		} catch (URISyntaxException e) {
 			return LoginCallback.ResultType.RESULT_FAIL_BADURI;
 		} catch (ClientProtocolException e) {

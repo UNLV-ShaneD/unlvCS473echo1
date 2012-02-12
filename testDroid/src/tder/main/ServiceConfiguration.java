@@ -1,5 +1,7 @@
 package tder.main;
 
+import java.io.Serializable;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -10,27 +12,24 @@ import android.os.Parcelable;
  * Includes GPS coordinate, radius, and authentication string
  */
 
-public class ServiceConfiguration implements Parcelable {
+public class ServiceConfiguration implements Parcelable, Serializable {
 
-	boolean enable;
-	double homeLatitude;
-	double homeLongitude;
-	float homeRadius;
-	String authentication;
+	private static final long serialVersionUID = -7108068729789727436L;
+
+	boolean enable = false;
+	double homeLatitude = 0.0;
+	double homeLongitude = 0.0;
+	float homeRadius = 0.f;
+	String authentication = "";
 
 	public ServiceConfiguration() {
-		enable = false;
-		homeLatitude = 0.0;
-		homeLongitude = 0.0;
-		homeRadius = 0.f;
-		authentication = "";
 	}
-	
+
 	//
 	// Below this line: Implementation of Parcelable interface
 	// We use Parcelable instead of Serializable for performance reasons
 	//
-	
+
 	public int describeContents() {
 		return 0;
 	}
@@ -38,7 +37,7 @@ public class ServiceConfiguration implements Parcelable {
 	public ServiceConfiguration(Parcel source) {
 		boolean bools[] = new boolean[1];
 		source.readBooleanArray(bools);
-		
+
 		enable = bools[0];
 		homeLatitude = source.readDouble();
 		homeLongitude = source.readDouble();
@@ -56,6 +55,7 @@ public class ServiceConfiguration implements Parcelable {
 		dest.writeString(authentication);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
 
 		public ServiceConfiguration createFromParcel(Parcel source) {

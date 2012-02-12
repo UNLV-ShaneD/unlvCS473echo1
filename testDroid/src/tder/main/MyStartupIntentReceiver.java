@@ -9,9 +9,13 @@ public class MyStartupIntentReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		//Launch our GPS service
-		Intent serviceIntent = new Intent();
-		serviceIntent.setAction("com.wissen.startatboot.MyService");
-		context.startService(serviceIntent);
+		GpsServiceInterfacer.Start(context);
+		
+		System.out.println("MyStartupIntentReceiver invoked!\n");
+		
+//		Intent serviceIntent = new Intent();
+//		serviceIntent.setAction("com.wissen.startatboot.MyService");
+//		context.startService(serviceIntent);
 	}
 
 }

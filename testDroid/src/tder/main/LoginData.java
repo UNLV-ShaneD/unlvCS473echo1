@@ -1,13 +1,13 @@
 package tder.main;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
 
-import android.net.Uri;
-
-public class LoginData {
+public class LoginData implements Serializable {
+	private static final long serialVersionUID = -3211440917525545265L;
 	String host;
 	String userid;
 	String password;
