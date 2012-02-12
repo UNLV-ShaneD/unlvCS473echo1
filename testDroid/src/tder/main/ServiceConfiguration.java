@@ -13,21 +13,19 @@ import android.os.Parcelable;
  */
 
 public class ServiceConfiguration implements Parcelable, Serializable {
-
-	private static final long serialVersionUID = -7108068729789727436L;
-
+	private static final long serialVersionUID = 6951623591153547992L;
 	boolean enable = false;
 	double homeLatitude = 0.0;
 	double homeLongitude = 0.0;
 	float homeRadius = 0.f;
-	String authentication = "";
+	LoginData loginData;
 
 	public ServiceConfiguration() {
 	}
 
 	//
 	// Below this line: Implementation of Parcelable interface
-	// We use Parcelable instead of Serializable for performance reasons
+	// We use Parcelable instead of Serializable for IPC transport for performance reasons
 	//
 
 	public int describeContents() {
@@ -42,7 +40,7 @@ public class ServiceConfiguration implements Parcelable, Serializable {
 		homeLatitude = source.readDouble();
 		homeLongitude = source.readDouble();
 		homeRadius = source.readFloat();
-		authentication = source.readString();
+		loginData = source.readParcelable(LoginData.class.getClassLoader());
 	}
 
 	public void writeToParcel(Parcel dest, int flags) {
@@ -52,11 +50,10 @@ public class ServiceConfiguration implements Parcelable, Serializable {
 		dest.writeDouble(homeLatitude);
 		dest.writeDouble(homeLongitude);
 		dest.writeFloat(homeRadius);
-		dest.writeString(authentication);
+		dest.writeParcelable(loginData, 0);
 	}
 
-	@SuppressWarnings("rawtypes")
-	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+	public static final Parcelable.Creator<ServiceConfiguration> CREATOR = new Parcelable.Creator<ServiceConfiguration>() {
 
 		public ServiceConfiguration createFromParcel(Parcel source) {
 			return new ServiceConfiguration(source);

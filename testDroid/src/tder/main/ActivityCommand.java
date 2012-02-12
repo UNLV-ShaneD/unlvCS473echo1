@@ -38,7 +38,6 @@ public class ActivityCommand extends ListActivity {
         ListView listView = getListView();
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        final TextView frmTV = (TextView)findViewById(R.id.textView1);
         final Button frmButWake = (Button)findViewById(R.id.buttonWake);
         
 
@@ -73,7 +72,7 @@ public class ActivityCommand extends ListActivity {
 	    	        		}
 	    				    
 	    				    in.close();
-	    				    final String html = str.toString();
+//	    				    final String html = str.toString();
 	    
 	    			        final TextView frmTV = (TextView)findViewById(R.id.textView1);
 	    				    frmTV.post(new Runnable() {
