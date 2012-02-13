@@ -32,6 +32,7 @@ public class GpsService extends Service {
 		
 		// Create listner object to handle GPS events
 		myLocationListener = new GpsLocationListener(this);
+		myLocationListener.context = getApplicationContext();
 		
 		Toast.makeText(this, "tder GPS service created", Toast.LENGTH_LONG).show();
 	}

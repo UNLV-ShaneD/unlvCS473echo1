@@ -15,11 +15,11 @@ public final class R {
     }
     public static final class id {
         public static final int button1=0x7f050012;
-        public static final int button2=0x7f050013;
         public static final int buttonAdd=0x7f050023;
         public static final int buttonAuthenticationLogin=0x7f050021;
         public static final int buttonEdit=0x7f050024;
         public static final int buttonHibernate=0x7f050005;
+        public static final int buttonHomeSave=0x7f050013;
         public static final int buttonRemove=0x7f050025;
         public static final int buttonStandby=0x7f050004;
         public static final int buttonWake=0x7f050003;
