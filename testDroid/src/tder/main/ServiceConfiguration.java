@@ -13,11 +13,16 @@ import android.os.Parcelable;
  */
 
 public class ServiceConfiguration implements Parcelable, Serializable {
+	// Constants
 	private static final long serialVersionUID = 6951623591153547992L;
+	
+	// Data
 	boolean enable = false;
 	double homeLatitude = 0.0;
 	double homeLongitude = 0.0;
 	float homeRadius = 0.f;
+	
+	// Fields
 	LoginData loginData;
 
 	public ServiceConfiguration() {
@@ -64,5 +69,9 @@ public class ServiceConfiguration implements Parcelable, Serializable {
 		}
 
 	};
+
+	public LoginData readLoginData() {
+		return loginData;
+	}
 
 }

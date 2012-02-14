@@ -10,11 +10,12 @@ import java.io.Serializable;
 import android.content.Context;
 
 public class MySaveData implements Serializable {
+	// Constants
 	private static final long serialVersionUID = -6102244456669174604L;
+	private static final String filename = "persistent";
 
+	// Fields
 	ServiceConfiguration serviceConfiguration = new ServiceConfiguration();
-
-	static final String filename = "persistent";
 
 	static public MySaveData Load(Context context) {
 		try {
@@ -42,5 +43,11 @@ public class MySaveData implements Serializable {
 		} catch (IOException e) {
 
 		}
+	}
+	
+	public LoginData readLoginData() {
+		if (serviceConfiguration == null)
+			return null;
+		return serviceConfiguration.readLoginData();
 	}
 }

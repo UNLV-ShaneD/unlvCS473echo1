@@ -28,7 +28,7 @@ public class GpsLocationListener implements LocationListener {
 	}
 
 	// Allow post-creation service configuration
-	public void setServiceConfiguration(
+	public void updateServiceConfiguration(
 			ServiceConfiguration serviceConfiguration) {
 		gpsSubsystemConfiguration.serviceConfiguration = serviceConfiguration;
 		gpsEventHandler.cancel();

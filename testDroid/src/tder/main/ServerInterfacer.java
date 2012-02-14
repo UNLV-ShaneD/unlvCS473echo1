@@ -15,7 +15,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 public class ServerInterfacer {
 	// Executes a http get request and returns the html string
-	static private String Get(String uri) throws ClientProtocolException,
+	private String Get(String uri) throws ClientProtocolException,
 			IOException, URISyntaxException, Exception {
 		HttpClient client = new DefaultHttpClient();
 		HttpGet request = new HttpGet();
@@ -36,27 +36,42 @@ public class ServerInterfacer {
 
 	// Executes login command
 	// Must be called in a non-main thread
-	static public LoginCallback.ResultType Login(LoginData loginData) {
+	public ServerResultType Login(LoginData loginData) {
 		try {
 			// Perform get-based authentication
 			String authenticationString = loginData.getAuthenticationString();
 			
 			System.out.println("Using authentication string >" + authenticationString + "<");
 			
-			@SuppressWarnings("unused") // TODO: Parse return
 			String html = Get(authenticationString);
+			
+			if (html.equals("bad")){
+				return ServerResultType.RESULT_FAIL_BADLOGIN;
+			}
+			
 		} catch (URISyntaxException e) {
-			return LoginCallback.ResultType.RESULT_FAIL_BADURI;
+			return ServerResultType.RESULT_FAIL_BADURI;
 		} catch (ClientProtocolException e) {
-			return LoginCallback.ResultType.RESULT_FAIL_GENERAL;
+			return ServerResultType.RESULT_FAIL_GENERAL;
 		} catch (IOException e) {
-			return LoginCallback.ResultType.RESULT_FAIL_BADSERVER;
+			return ServerResultType.RESULT_FAIL_BADSERVER;
 		}catch (Exception e) {
 			// Can't figure out what other exceptions are being thrown when a
 			// bad URI is used, so just catch them all
-			return LoginCallback.ResultType.RESULT_FAIL_BADURI;
+			return ServerResultType.RESULT_FAIL_BADURI;
 		}
 
-		return LoginCallback.ResultType.RESULT_SUCCESS;
+		return ServerResultType.RESULT_SUCCESS;
+	}
+	
+	// Executes a command
+	// Must be called in a non-main thread
+	public void command(LoginData loginData, ServerCommandType serverCommandType) {
+		try {
+			String uri = loginData.getCommandString(serverCommandType);
+			Get(uri);
+		} catch (Exception e) {
+			// Silent error
+		}
 	}
 }

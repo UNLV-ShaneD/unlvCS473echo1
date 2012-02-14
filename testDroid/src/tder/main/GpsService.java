@@ -72,7 +72,7 @@ public class GpsService extends Service {
 		// nothing
 		if (configuration.enable) {
 			// Configure the listener
-			myLocationListener.setServiceConfiguration(configuration);
+			myLocationListener.updateServiceConfiguration(configuration);
 
 			// Request GPS position updates; delegate to our location listener
 			// class

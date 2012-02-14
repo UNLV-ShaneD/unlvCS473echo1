@@ -3,68 +3,36 @@ package tder.main;
 import android.content.Context;
 
 public class ApplicationServices {
-	
+
 	// Fields
-	Context context;
-	
+	final Context context;
+
 	public ApplicationServices(Context context) {
 		this.context = context;
 	}
 
 	// Connect to the server with the user's authentication data and call back
 	// with the result
-	void Login(final LoginCallback callback,
-			final LoginData loginData) {
-		new Thread(new Runnable() {
-			public void run() {
-				callback.result = ServerInterfacer.Login(loginData);
-
-				// If the login information is good, save it
-				if (callback.result == LoginCallback.ResultType.RESULT_SUCCESS) {
-					MySaveData save = MySaveData.Load(context);
-					save.serviceConfiguration.loginData = loginData;
-					save.Save(context);
-					GpsServiceInterfacer.Invoke(context,
-							save.serviceConfiguration);
-				}
-
-				callback.run();
-			}
-		}).run();
+	void login(final LoginCallback callback, final LoginData loginData) {
+		DomainLogin domainLogin = new DomainLogin(context, callback, loginData);
+		Thread thread = new Thread(domainLogin);
+		thread.run();
 	}
 
-	static void UpdateCoordinates(final Context context,
-			final ServiceConfiguration serviceConfiguration) {
-		new Thread(new Runnable() {
-			public void run() {
-
-				MySaveData save = MySaveData.Load(context);
-				serviceConfiguration.loginData = save.serviceConfiguration.loginData;
-				save.serviceConfiguration = serviceConfiguration;
-				save.Save(context);
-				GpsServiceInterfacer.Invoke(context, save.serviceConfiguration);
-			}
-		}).run();
+	void updateCoordinates(final ServiceConfiguration serviceConfiguration) {
+		DomainUpdateCoordinates domainUpdateCoordinates = new DomainUpdateCoordinates(
+				context, serviceConfiguration);
+		Thread thread = new Thread(domainUpdateCoordinates);
+		thread.run();
 	}
 
-	void ComputerWake() {
-		new Thread(new Runnable() {
-			public void run() {
-				//stub
-
-			}
-		}).run();
+	void computerCommand(LoginData loginData, ServerCommandType serverCommandType) {
+		DomainCommand domainCommand = new DomainCommand(loginData, serverCommandType);
+		Thread thread = new Thread(domainCommand);
+		thread.run();
 	}
 
-	void ComputerStandby() {
-
-	}
-
-	void ComputerHibernate() {
-
-	}
-	
-	void ComputerAway() {
-		ComputerStandby();
+	void computerAway(LoginData loginData) {
+		computerCommand(loginData, ServerCommandType.STANDBY);
 	}
 }

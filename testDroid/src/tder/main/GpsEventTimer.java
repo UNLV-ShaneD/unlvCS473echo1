@@ -21,12 +21,13 @@ public class GpsEventTimer extends CountDownTimer {
 				.show();
 
 		ApplicationServices applicationServices = new ApplicationServices(gpsSubsystemConfiguration.context);
+		ServiceConfiguration serviceConfiguration = gpsSubsystemConfiguration.serviceConfiguration;
 		switch (area) {
 		case HOME:
-			applicationServices.ComputerWake();
+			applicationServices.computerCommand(serviceConfiguration.loginData, ServerCommandType.WAKE);
 			break;
 		case AWAY:
-			applicationServices.ComputerAway();
+			applicationServices.computerAway(serviceConfiguration.loginData);
 			break;
 		default:
 			break;

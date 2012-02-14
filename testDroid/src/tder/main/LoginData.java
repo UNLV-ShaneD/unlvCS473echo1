@@ -10,7 +10,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class LoginData implements Parcelable, Serializable {
+	// Constants
 	private static final long serialVersionUID = 7557766844250154733L;
+	
+	// Fields
 	String host;
 	String userid;
 	String password;
@@ -19,6 +22,21 @@ public class LoginData implements Parcelable, Serializable {
 		URI uri;
 		try {
 			uri = new URI("http", null, host, 80, "/login", URLEncoder.encode(
+					"userid=" + userid + "&password=" + password, "UTF-8"),
+					null);
+			return uri.toString();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public String getCommandString(ServerCommandType serverCommandType) throws URISyntaxException {
+		URI uri;
+		try {
+			uri = new URI("http", null, host, 80, "/" + serverCommandType.page, URLEncoder.encode(
 					"userid=" + userid + "&password=" + password, "UTF-8"),
 					null);
 			return uri.toString();

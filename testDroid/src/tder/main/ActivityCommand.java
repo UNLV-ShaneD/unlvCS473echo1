@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class ActivityCommand extends Activity implements View.OnClickListener {
 	
@@ -30,24 +29,26 @@ public class ActivityCommand extends Activity implements View.OnClickListener {
 	}
 
 	public void onClick(View v) {
+		// Load field values from saved state
+		MySaveData save = MySaveData.Load(this);
+		LoginData loginData = save.readLoginData();
+		
+		if (loginData == null)
+			return;
+		
 		switch (v.getId()) {
 		case R.id.buttonWake:
-			applicationServices.ComputerWake();
+			applicationServices.computerCommand(loginData, ServerCommandType.WAKE);
 			break;
 		case R.id.buttonStandby:
-			applicationServices.ComputerStandby();
+			applicationServices.computerCommand(loginData, ServerCommandType.STANDBY);
 			break;
 		case R.id.buttonHibernate:
-			applicationServices.ComputerHibernate();
+			applicationServices.computerCommand(loginData, ServerCommandType.HIBERNATE);
 			break;
 		default:
 			break;
 		}
-	}
-
-	public void onClickWake(View target) {
-		Toast.makeText(target.getContext(), "onClickWake", Toast.LENGTH_LONG)
-				.show();
 	}
 }
 

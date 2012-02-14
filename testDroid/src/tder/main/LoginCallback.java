@@ -1,21 +1,42 @@
 package tder.main;
 
+import android.content.Context;
+import android.widget.TextView;
+
 // Class used as parameter to ApplicationServices.Login
 // Is run() when login procedure is complete
-public abstract class LoginCallback implements Runnable {
-	enum ResultType {
-		RESULT_SUCCESS (R.string.appFrmAuthenticationSuccess),
-		RESULT_FAIL_TIMEOUT (R.string.appFrmAuthenticationTimeout),
-		RESULT_FAIL_BADSERVER (R.string.appFrmAuthenticationBadServer),
-		RESULT_FAIL_BADLOGIN (R.string.appFrmAuthenticationBadLogin),
-		RESULT_FAIL_BADURI (R.string.appFrmAuthenticationBadURI),
-		RESULT_FAIL_GENERAL (R.string.appFrmAuthenticationBadGeneral);
-		
-		public final int message;
-		
-		ResultType(int message){
+public class LoginCallback implements Runnable {
+	
+	// Postback updates a textview to display status of the login
+	private final class Postback implements Runnable {
+		private final int message;
+
+		private Postback(int message) {
 			this.message = message;
 		}
-	};
-	ResultType result;
+
+		public void run() {
+			String localizedMessage = context.getString(message);
+			textViewAuthenticationStatus.setText(localizedMessage);
+		}
+	}
+
+	// Fields
+	ServerResultType result;
+	final Context context;
+	final TextView textViewAuthenticationStatus;
+	
+	public LoginCallback(Context context, TextView textViewAuthenticationStatus) {
+		this.context = context;
+		this.textViewAuthenticationStatus = textViewAuthenticationStatus;
+	}
+	
+	public void run() {
+		final int message = result.message;
+		
+		// Runnable for posting to the textView to show status
+		final Runnable postStatus = new Postback(message);
+		
+		textViewAuthenticationStatus.post(postStatus);
+	}
 }
