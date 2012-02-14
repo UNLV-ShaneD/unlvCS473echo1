@@ -1,14 +1,19 @@
 package tder.main;
 
-import java.net.SocketException;
-
 import android.content.Context;
 
 public class ApplicationServices {
+	
+	// Fields
+	Context context;
+	
+	public ApplicationServices(Context context) {
+		this.context = context;
+	}
 
 	// Connect to the server with the user's authentication data and call back
 	// with the result
-	static void Login(final Context context, final LoginCallback callback,
+	void Login(final LoginCallback callback,
 			final LoginData loginData) {
 		new Thread(new Runnable() {
 			public void run() {
@@ -42,44 +47,24 @@ public class ApplicationServices {
 		}).run();
 	}
 
-	void AddComputer(DataComputer computer) {
-
-	}
-
-	void ModifyComputer(DataComputer computer) {
-
-	}
-
-	void DeleteComputer(DataComputer computer) {
-
-	}
-
-	DataComputer[] GetComputers() {
-		return null;
-	}
-
-	void ComputerWake(final DataComputer computer) {
-
+	void ComputerWake() {
 		new Thread(new Runnable() {
 			public void run() {
-
-				MagicPacketer magicPacketer = new MagicPacketer();
-				try {
-					magicPacketer.Wake(computer.ipAddress, computer.macAddress);
-				} catch (SocketException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				//stub
 
 			}
 		}).run();
 	}
 
-	void ComputerStandby(DataComputer computer) {
+	void ComputerStandby() {
 
 	}
 
-	void ComputerHibernate(DataComputer computer) {
+	void ComputerHibernate() {
 
+	}
+	
+	void ComputerAway() {
+		ComputerStandby();
 	}
 }

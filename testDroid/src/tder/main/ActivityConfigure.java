@@ -10,12 +10,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class ActivityConfigure extends Activity {
+	
+	// Fields
+	ApplicationServices applicationServices;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.configure);
 
 		final Context context = this;
+		applicationServices = new ApplicationServices(this);
 		
 		
 		// Load field values from saved state
@@ -78,7 +82,7 @@ public class ActivityConfigure extends Activity {
 				};
 
 				// Execute login on application services layer
-				ApplicationServices.Login(context, callback, loginData);
+				applicationServices.Login(callback, loginData);
 			}
 		});
 		

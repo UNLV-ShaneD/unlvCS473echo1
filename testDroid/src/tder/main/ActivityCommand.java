@@ -1,100 +1,61 @@
 package tder.main;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.SocketException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import android.app.ListActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
-public class ActivityCommand extends ListActivity {
+public class ActivityCommand extends Activity implements View.OnClickListener {
 	
-	static String[] TARGETS = new String[] {
-		"shaneserv", "shanenet", "sed"
-	};
+	// Fields
+	ApplicationServices applicationServices;
 	
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.command);
-        
-        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, TARGETS));
-        ListView listView = getListView();
-        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.command);
 
-        final Button frmButWake = (Button)findViewById(R.id.buttonWake);
-        
+		applicationServices = new ApplicationServices(this);
+		
+		Button button;
+		
+		button = (Button) findViewById(R.id.buttonWake);
+		button.setOnClickListener(this);
+		button = (Button) findViewById(R.id.buttonStandby);
+		button.setOnClickListener(this);
+		button = (Button) findViewById(R.id.buttonHibernate);
+		button.setOnClickListener(this);
+	}
 
-        frmButWake.setOnClickListener(new View.OnClickListener() {
-        	public void onClick(View v)
-        	{
-        		new Thread(new Runnable() {
-        			public void run() {
-	            		// HACK: Perform click action directly (Yay for mixing the interface and application services layers!)
-        				MagicPacketer magicPacketer = new MagicPacketer();
-        				try {
-							magicPacketer.Wake("192.168.1.13", "00:24:8C:9E:17:B4");
-						} catch (SocketException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-	            		
-	            		try
-	            		{
-	    	        		HttpClient client = new DefaultHttpClient();
-	    	        		HttpGet request = new HttpGet();
-	    	        		request.setURI(new URI("http://www.google.com/"));
-	    	        		HttpResponse response = client.execute(request);
-	    	        		
-	    	        		InputStream in = response.getEntity().getContent();
-	    	        		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-	    	        		StringBuilder str = new StringBuilder();
-	    	        		String line = null;
-	    	        		while ((line = reader.readLine()) != null)
-	    	        		{
-	    	        			str.append(line);
-	    	        		}
-	    				    
-	    				    in.close();
-//	    				    final String html = str.toString();
-	    
-	    			        final TextView frmTV = (TextView)findViewById(R.id.textView1);
-	    				    frmTV.post(new Runnable() {
-	    				    	public void run() {
-	    				    		frmTV.setText("Done.");
-	    				    		}
-	    				    });
-	            		}
-	            		catch (ClientProtocolException e)
-	            		{
-	    					e.printStackTrace();
-	            		} catch (IOException e) {
-	    					// TODO Auto-generated catch block
-	    					e.printStackTrace();
-	    				} catch (URISyntaxException e) {
-	    					// TODO Auto-generated catch block
-	    					e.printStackTrace();
-	    				}
-        			}
-        		}).start();
-        		
-        	}
-        });
-    }
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.buttonWake:
+			applicationServices.ComputerWake();
+			break;
+		case R.id.buttonStandby:
+			applicationServices.ComputerStandby();
+			break;
+		case R.id.buttonHibernate:
+			applicationServices.ComputerHibernate();
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void onClickWake(View target) {
+		Toast.makeText(target.getContext(), "onClickWake", Toast.LENGTH_LONG)
+				.show();
+	}
 }
+
+/*
+ * new Thread(new Runnable() { public void run() { // HACK: Perform click action
+ * directly (Yay for mixing the interface and application services layers!)
+ * MagicPacketer magicPacketer = new MagicPacketer(); try {
+ * magicPacketer.Wake("192.168.1.13", "00:24:8C:9E:17:B4"); } catch
+ * (SocketException e1) { // TODO Auto-generated catch block
+ * e1.printStackTrace(); } } }).start();
+ */
