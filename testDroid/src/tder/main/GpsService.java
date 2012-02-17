@@ -16,7 +16,7 @@ public class GpsService extends Service {
 	static final float MinimumDistance = 1.f; // meters
 
 	// Fields
-	ServiceConfiguration configuration;
+	ServiceConfiguration serviceConfiguration;
 	LocationManager locationManager = null;
 	GpsLocationListener myLocationListener = null;
 
@@ -32,18 +32,13 @@ public class GpsService extends Service {
 
 		// Create listener object to handle GPS events
 		GpsSubsystemConfiguration gpsSubsystemConfiguration = new GpsSubsystemConfiguration(
-				this, null);
+				this, new ServiceConfiguration());
 		myLocationListener = new GpsLocationListener(gpsSubsystemConfiguration);
-
-		Toast.makeText(this, "tder GPS service created", Toast.LENGTH_LONG)
-				.show();
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Toast.makeText(this, "tder GPS service destroyed", Toast.LENGTH_LONG)
-				.show();
 	}
 
 	@Override
@@ -51,14 +46,11 @@ public class GpsService extends Service {
 		super.onStart(intent, startId);
 
 		// Get the GpsService parameters
-		configuration = intent.getParcelableExtra("tder.main.configuration");
+		serviceConfiguration = intent.getParcelableExtra("tder.main.configuration");
 
 		// Create debugging message to tell us if the messaging service is
 		// enabled/disabled
-		String debugMessage = "tder GPS service started";
-		if (!configuration.enable) {
-			debugMessage += "\nmessaging disabled";
-		}
+		String debugMessage = "GPS service started";
 
 		// Configure the location manager for necessary GPS updates
 
@@ -68,25 +60,22 @@ public class GpsService extends Service {
 		// Clear any update requests we may already have
 		locationManager.removeUpdates(myLocationListener);
 
-		// If we're enabling, we need to re-install the listener - otherwise, do
-		// nothing
-		if (configuration.enable) {
-			// Configure the listener
-			myLocationListener.updateServiceConfiguration(configuration);
+		// Re-install the listener
+		// Configure the listener
+		GpsSubsystemConfiguration gpsSubsystemConfiguration = new GpsSubsystemConfiguration(this, serviceConfiguration);
+		myLocationListener.cancel();
+		myLocationListener = new GpsLocationListener(gpsSubsystemConfiguration);
 
-			// Request GPS position updates; delegate to our location listener
-			// class
-			locationManager.requestLocationUpdates(
-					LocationManager.GPS_PROVIDER, MinimumTime, MinimumDistance,
-					myLocationListener);
+		// Request GPS position updates; delegate to our location listener
+		// class
+		locationManager.requestLocationUpdates(
+				LocationManager.GPS_PROVIDER, MinimumTime, MinimumDistance,
+				myLocationListener);
 
-			debugMessage += "\nmessaging enabled\n("
-					+ configuration.homeLatitude + ", "
-					+ configuration.homeLongitude + ")";
-		}
+		debugMessage += "\nHome: " + serviceConfiguration.getLocationDataString();
 
 		// Display debug message
-		Toast.makeText(this, debugMessage, Toast.LENGTH_LONG).show();
+		Toast.makeText(this, debugMessage, Toast.LENGTH_SHORT).show();
 	}
 
 }

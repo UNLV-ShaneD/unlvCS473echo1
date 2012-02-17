@@ -29,7 +29,7 @@ public class MySaveData implements Serializable {
 			e.printStackTrace();
 		}
 
-		return null;
+		return new MySaveData();
 	}
 
 	public void Save(Context context) {

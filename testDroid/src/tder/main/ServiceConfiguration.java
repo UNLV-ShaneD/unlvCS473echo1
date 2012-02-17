@@ -2,8 +2,10 @@ package tder.main;
 
 import java.io.Serializable;
 
+import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.EditText;
 
 /* 
  * Service Configuration class
@@ -14,18 +16,46 @@ import android.os.Parcelable;
 
 public class ServiceConfiguration implements Parcelable, Serializable {
 	// Constants
-	private static final long serialVersionUID = 6951623591153547992L;
+	private static final long serialVersionUID = 2750061703736628200L;
+
 	
 	// Data
-	boolean enable = false;
-	double homeLatitude = 0.0;
-	double homeLongitude = 0.0;
-	float homeRadius = 0.f;
-	
+	GpsLocationData gpsLocationData = new GpsLocationData(0.0, 0.0, 0.f);
+
 	// Fields
-	LoginData loginData;
+	LoginData loginData = new LoginData();
 
 	public ServiceConfiguration() {
+	}
+
+	public LoginData readLoginData() {
+		return loginData;
+	}
+
+	public void populateHomeTextViews(EditText editTextHomeLatitude,
+			EditText editTextHomeLongitude, EditText editTextHomeRadius) {
+		
+		if (gpsLocationData == null) {
+			System.out.println("crash 2");
+		}
+		gpsLocationData.populateHomeTextViews(editTextHomeLatitude, editTextHomeLongitude, editTextHomeRadius);
+	}
+	public void updateFromHomeTextViews(EditText editTextLatitude,
+			EditText editTextLongitude, EditText editTextRadius) {
+		gpsLocationData.updateFromHomeTextViews(editTextLatitude, editTextLongitude, editTextRadius);
+	}
+
+	// Find distance between location and home
+	public AreaType calculateProximity(Location location) {
+		return gpsLocationData.calculateProximity(location);
+	}
+
+	public String getLocationDataString() {
+		if (gpsLocationData == null) {
+			return "(No location)";
+		}
+		
+		return "" + gpsLocationData;
 	}
 
 	//
@@ -38,23 +68,12 @@ public class ServiceConfiguration implements Parcelable, Serializable {
 	}
 
 	public ServiceConfiguration(Parcel source) {
-		boolean bools[] = new boolean[1];
-		source.readBooleanArray(bools);
-
-		enable = bools[0];
-		homeLatitude = source.readDouble();
-		homeLongitude = source.readDouble();
-		homeRadius = source.readFloat();
+		gpsLocationData = source.readParcelable(GpsLocationData.class.getClassLoader());
 		loginData = source.readParcelable(LoginData.class.getClassLoader());
 	}
 
 	public void writeToParcel(Parcel dest, int flags) {
-		boolean bools[] = new boolean[1];
-		bools[0] = enable;
-		dest.writeBooleanArray(bools);
-		dest.writeDouble(homeLatitude);
-		dest.writeDouble(homeLongitude);
-		dest.writeFloat(homeRadius);
+		dest.writeParcelable(gpsLocationData, 0);
 		dest.writeParcelable(loginData, 0);
 	}
 
@@ -69,9 +88,4 @@ public class ServiceConfiguration implements Parcelable, Serializable {
 		}
 
 	};
-
-	public LoginData readLoginData() {
-		return loginData;
-	}
-
 }

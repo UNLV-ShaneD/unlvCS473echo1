@@ -26,46 +26,28 @@ public class GpsLocationListener implements LocationListener {
 		this.gpsSubsystemConfiguration = gpsSubsystemConfiguration;
 		this.gpsEventHandler = new GpsEventHandler(gpsSubsystemConfiguration);
 	}
-
-	// Allow post-creation service configuration
-	public void updateServiceConfiguration(
-			ServiceConfiguration serviceConfiguration) {
-		gpsSubsystemConfiguration.serviceConfiguration = serviceConfiguration;
+	
+	// Stop any live events
+	public void cancel() {
 		gpsEventHandler.cancel();
-		gpsEventHandler = new GpsEventHandler(gpsSubsystemConfiguration);
 	}
 
 	// Calculates distance from the home zone
 	public void onLocationChanged(Location location) {
-		ServiceConfiguration serviceConfiguration = gpsSubsystemConfiguration.serviceConfiguration;
-		if (serviceConfiguration == null)
-			return;
-
 		// Calculate distance between home and current location
-		float gpsDistanceResults[] = new float[3];
-		Location.distanceBetween(serviceConfiguration.homeLatitude,
-				serviceConfiguration.homeLongitude, location.getLatitude(),
-				location.getLongitude(), gpsDistanceResults);
+		AreaType area = gpsSubsystemConfiguration.calculateProximity(location);
 
 		// Debug message output
 		String message = "New GPS location: (" + location.getLongitude() + ", "
-				+ location.getLatitude() + ")\nDistance from home: "
-				+ gpsDistanceResults[0] + " meters.";
+				+ location.getLatitude() + ")\nDesignation: " + area;
 		Toast.makeText(gpsSubsystemConfiguration.context, message,
 				Toast.LENGTH_LONG).show();
 
-		onDistanceChange(gpsDistanceResults[0]);
+		onAreaChange(area);
 	}
 
 	// Calculates if we are entering/leaving home and fires off events if needed
-	public void onDistanceChange(float distance) {
-		ServiceConfiguration serviceConfiguration = gpsSubsystemConfiguration.serviceConfiguration;
-		AreaType currentArea = AreaType.AWAY;
-
-		if (distance < serviceConfiguration.homeRadius) {
-			currentArea = AreaType.HOME;
-		}
-
+	public void onAreaChange(AreaType currentArea) {
 		if (currentArea != lastAreaType && lastAreaType != AreaType.UNKNOWN) {
 			gpsEventHandler.onEnterArea(currentArea);
 		}

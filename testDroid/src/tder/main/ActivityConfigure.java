@@ -31,9 +31,10 @@ public class ActivityConfigure extends Activity implements View.OnClickListener 
 		final EditText editTextHomeRadius = (EditText) findViewById(R.id.editHomeRadius);
 		
 		ServiceConfiguration serviceConfiguration = save.serviceConfiguration;
-		editTextHomeLatitude.setText("" + serviceConfiguration.homeLatitude);
-		editTextHomeLongitude.setText("" + serviceConfiguration.homeLongitude);
-		editTextHomeRadius.setText("" + serviceConfiguration.homeRadius);
+		if (serviceConfiguration == null) {
+			System.out.println("crash 1");
+		}
+		serviceConfiguration.populateHomeTextViews(editTextHomeLatitude, editTextHomeLongitude, editTextHomeRadius);
 		
 		LoginData loginData = serviceConfiguration.loginData;
 		editTextAuthenticationServer.setText(loginData.host);
@@ -69,7 +70,6 @@ public class ActivityConfigure extends Activity implements View.OnClickListener 
 		case R.id.buttonHomeSave:
 			// Saves new home coordinates
 			ServiceConfiguration serviceConfiguration = new ServiceConfiguration();
-			serviceConfiguration.enable = true;
 			populateServiceConfiguration(serviceConfiguration);
 
 			// Update coordinates on application services layer
@@ -96,12 +96,6 @@ public class ActivityConfigure extends Activity implements View.OnClickListener 
 		final EditText editTextLongitude = (EditText) findViewById(R.id.editHomeLongitude);
 		final EditText editTextRadius = (EditText) findViewById(R.id.editHomeRadius);
 		
-		try {
-			serviceConfiguration.homeLatitude = Double.parseDouble(editTextLatitude.getText().toString());
-			serviceConfiguration.homeLongitude = Double.parseDouble(editTextLongitude.getText().toString());
-			serviceConfiguration.homeRadius = Float.parseFloat(editTextRadius.getText().toString());
-		} catch (NumberFormatException e) {
-			return;
-		}
+		serviceConfiguration.updateFromHomeTextViews(editTextLatitude, editTextLongitude, editTextRadius);
 	}
 }

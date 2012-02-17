@@ -15,7 +15,6 @@ public class ActivityMain extends TabActivity {
 		// GpsServiceInterfacer.Disable(this);
 
 		MySaveData save = MySaveData.Load(this);
-		save.serviceConfiguration.enable = true;
 		GpsServiceInterfacer.Invoke(this, save.serviceConfiguration);
 
 		// Resources res = getResources(); // Resource object to get Drawables
