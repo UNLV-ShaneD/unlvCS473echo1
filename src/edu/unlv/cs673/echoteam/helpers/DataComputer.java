@@ -55,6 +55,7 @@ public class DataComputer {
 		}
 	}
 	
+	// Generates HTML for computerListAll to allow editing of and sending commands to computers
 	public String printListRow() {
 		if(computerMAC==null){
 			computerMAC="";
@@ -80,6 +81,29 @@ public class DataComputer {
 			out += "</td><td>";
 			out += "<a href=\"magicPacketSend.jsp?host=" + computerIP + "&macAddress=" + computerMAC + "\">Send WoL Packet</a>";
 			out += "</td>";
+		out += "</tr>";
+		
+		return out;
+	}
+
+	// Generates HTML for administrative oversight of computers
+	public String printListRowAdmin() {
+		String out = "";
+		
+		out += "<tr>";
+		// Check box for Primary Key (ComputerId)
+		out += "<td><input type=\"checkbox\" name=\"" + computerId + "\" />";
+		out += "</td><td>";
+		out += userId;
+		out += "</td><td>";
+		out += computerIP;
+		out += "</td><td>";
+		out += networkId;
+		out += "</td><td>";
+		out += computerPort;
+		out += "</td><td>";
+		out += computerMAC;
+		out += "</td>";
 		out += "</tr>";
 		
 		return out;

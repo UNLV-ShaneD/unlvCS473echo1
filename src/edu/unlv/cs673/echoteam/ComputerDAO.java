@@ -6,10 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import sun.java2d.SunGraphicsEnvironment.TTFilter;
-
-import com.mysql.jdbc.Statement;
-
 import edu.unlv.cs673.echoteam.helpers.DataComputer;
 
 public class ComputerDAO extends DAO {
@@ -95,10 +91,9 @@ public class ComputerDAO extends DAO {
 		return results;
 	}
 	
-	@SuppressWarnings({ "rawtypes" })
-	public List selectAllComputersForUser(int userId) {
-		List results = new ArrayList<DataComputer>();
-		@SuppressWarnings("unused")
+	public List<DataComputer> selectAllComputersForUser(int userId) {
+		List<DataComputer> results = new ArrayList<DataComputer>();
+
 		String query = "SELECT computerId, userId, networkId, computerIP, computerPort, computerMAC FROM computers WHERE userId=?;";
 		PreparedStatement p = null;
 		ResultSet rs = null;
@@ -115,8 +110,8 @@ public class ComputerDAO extends DAO {
 	}
 	
 	public DataComputer getComputerByID(DataComputer computer) throws SQLException {
-		List results = new ArrayList<DataComputer>();
-		@SuppressWarnings("unused")
+		List<DataComputer> results = new ArrayList<DataComputer>();
+
 		String query = "SELECT computerId, userId, networkId, computerIP, computerPort, computerMAC FROM computers WHERE computerId=? AND userId=?;";
 		ResultSet resultSet = null;
 		try {

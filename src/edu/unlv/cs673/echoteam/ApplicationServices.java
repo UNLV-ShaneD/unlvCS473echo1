@@ -26,9 +26,25 @@ public class ApplicationServices {
 	public String displayComputers(ComputerEvaluationCallback callback) {
 		String out = "";
 		
-		int currUserId = session.getUserID();
+		int userId = session.getUserID();
  		ComputerDAO computerDao = new ComputerDAO();
- 		List<DataComputer> results = computerDao.selectAllComputersForUser(currUserId);
+ 		List<DataComputer> results = computerDao.selectAllComputersForUser(userId);
+ 		
+ 		for(DataComputer ch: results){
+ 			if (ch == null)
+ 				break;
+ 			out += callback.evaluateComputer(ch);
+ 		}
+ 		
+ 		return out;
+	}
+
+	public String displayComputersAdmin(ComputerEvaluationCallback callback) {
+		String out = "";
+		
+		int userId = session.getUserID();
+ 		ComputerDAO computerDao = new ComputerDAO();
+ 		List<DataComputer> results = computerDao.selectAllComputers();
  		
  		for(DataComputer ch: results){
  			if (ch == null)
@@ -47,7 +63,6 @@ public class ApplicationServices {
 	public String findComputerByID(ComputerEvaluationCallback callback, DataComputer computer) {
 		String out = "";
 		
-		int currUserId = (Integer) session.getUserID();
 		ComputerDAO computerDao = new ComputerDAO();
 		DataComputer resultComputer;
 		try {
