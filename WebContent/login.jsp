@@ -3,9 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="header.inc"></jsp:include>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-</head>
 <body bgcolor="white" onload="document.loginForm.username.focus()">
 	<center>
 		<form name="loginForm" method="post" action="loginDo.jsp">
@@ -36,6 +33,5 @@
 			}%> </font>
 	</center>
 </body>
-</html>
 
 <jsp:include page="footer.inc"></jsp:include>
