@@ -1,3 +1,4 @@
+<jsp:include page="verifyAdminLogin.jsp"></jsp:include>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="edu.unlv.cs673.echoteam.UserDAO,
@@ -11,7 +12,6 @@
 <html>
 <body>
 <jsp:include page="header.inc"></jsp:include>
-<jsp:include page="verifyAdminLogin.jsp"></jsp:include>
 
 <center>
 	<form method="GET" action="adminUserChanged.jsp" name="listall">

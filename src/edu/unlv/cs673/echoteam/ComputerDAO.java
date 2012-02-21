@@ -10,14 +10,14 @@ import sun.java2d.SunGraphicsEnvironment.TTFilter;
 
 import com.mysql.jdbc.Statement;
 
-import edu.unlv.cs673.echoteam.helpers.ComputerHelper;
+import edu.unlv.cs673.echoteam.helpers.DataComputer;
 
 public class ComputerDAO extends DAO {
 	// Use DAO for the connection, but do db selects here. Return RecordSet results as a 
 	// collection of ComputerHelper objects
 
-	public List<ComputerHelper> selectAllComputers() {
-		List<ComputerHelper> results = new ArrayList<ComputerHelper>();
+	public List<DataComputer> selectAllComputers() {
+		List<DataComputer> results = new ArrayList<DataComputer>();
 		String query = "SELECT computerId, userId, networkId, computerIP, computerPort, computerMAC FROM computers;";
 		ResultSet rs = readQuery(query);
 		results = buildResultList(rs);
@@ -29,7 +29,7 @@ public class ComputerDAO extends DAO {
 		String query = "";
 		query = "SHOW TABLES";
 		PreparedStatement p = null;
-		p = con.prepareStatement(query);
+		p = connection.prepareStatement(query);
 		p.execute();
 		
 		ResultSet result = p.getResultSet();
@@ -37,8 +37,8 @@ public class ComputerDAO extends DAO {
 	}
 
 	@SuppressWarnings({ })
-	private List<ComputerHelper> buildResultList(ResultSet rs) {
-		List<ComputerHelper> results = new ArrayList<ComputerHelper>();
+	private List<DataComputer> buildResultList(ResultSet rs) {
+		List<DataComputer> results = new ArrayList<DataComputer>();
 		try {
 			if (rs != null) {
 				// Build results
@@ -85,7 +85,7 @@ public class ComputerDAO extends DAO {
 						computerMAC = rs.getString(6);
 					}
 
-					results.add(new ComputerHelper(computerId, userId, networkId, computerIP, computerPort, computerMAC));
+					results.add(new DataComputer(computerId, userId, networkId, computerIP, computerPort, computerMAC));
 				}
 			}
 		} catch (SQLException e) {
@@ -97,13 +97,13 @@ public class ComputerDAO extends DAO {
 	
 	@SuppressWarnings({ "rawtypes" })
 	public List selectAllComputersForUser(int userId) {
-		List results = new ArrayList<ComputerHelper>();
+		List results = new ArrayList<DataComputer>();
 		@SuppressWarnings("unused")
 		String query = "SELECT computerId, userId, networkId, computerIP, computerPort, computerMAC FROM computers WHERE userId=?;";
 		PreparedStatement p = null;
 		ResultSet rs = null;
 		try {
-			p = con.prepareStatement(query);
+			p = connection.prepareStatement(query);
 			p.setString(1, "" + userId);
 			rs = p.executeQuery();
 		} catch (SQLException e) {
@@ -114,29 +114,48 @@ public class ComputerDAO extends DAO {
 		return results;
 	}
 	
-	public void insertComputer(String userId, String computerIP, String computerPort, String computerMAC) throws SQLException {
+	public DataComputer getComputerByID(DataComputer computer) throws SQLException {
+		List results = new ArrayList<DataComputer>();
+		@SuppressWarnings("unused")
+		String query = "SELECT computerId, userId, networkId, computerIP, computerPort, computerMAC FROM computers WHERE computerId=? AND userId=?;";
+		ResultSet resultSet = null;
+		try {
+			PreparedStatement statement = connection.prepareStatement(query);
+			computer.prepareIDFindStatement(statement);
+			resultSet = statement.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		results = buildResultList(resultSet);
+		
+		if (results.size() == 0)
+			return null;
+		
+		DataComputer resultComputer = (DataComputer) results.get(0);
+		
+		return resultComputer;
+	}
+	
+	public void insertComputer(DataComputer computer) throws SQLException {
 		@SuppressWarnings("unused")
 		DAO myDao = new DAO();
 		String query = "";
 		query = "INSERT INTO computers (userId, computerIP, computerPort, computerMAC) Values (?, ?, ?, ?);";
-		PreparedStatement p = null;
-		p = con.prepareStatement(query);
-		p.setString(1, userId);
-		p.setString(2, computerIP);
-		p.setString(3, computerPort);
-		p.setString(4, computerMAC);
-		System.out.println(p.toString());
-		p.execute();
+		PreparedStatement statement = null;
+		statement = connection.prepareStatement(query);
+		computer.prepareInsertStatement(statement);
+		System.out.println(statement.toString());
+		statement.execute();
 		query = "commit;";
-		p = con.prepareStatement(query);
-		p.execute();
+		statement = connection.prepareStatement(query);
+		statement.execute();
 	}
 	
 	public void deleteComputerById(int computerId) throws SQLException {
 		@SuppressWarnings("unused")
 		DAO myDao = new DAO();
 		String query = "DELETE FROM computers WHERE computerId = ?";
-		PreparedStatement p = con.prepareStatement(query);
+		PreparedStatement p = connection.prepareStatement(query);
 		p.setInt(1, computerId);
 		p.execute();
 	}
@@ -149,7 +168,7 @@ public class ComputerDAO extends DAO {
 		PreparedStatement p;
 		int id = 0;
 		try {
-			p = con.prepareStatement(query);
+			p = connection.prepareStatement(query);
 			if (select != null) {
 				for (int i = 0; i < select.length; i++) {
 					id = Integer.valueOf(select[i]);

@@ -8,7 +8,7 @@
 </head>
 <body bgcolor="white" onload="document.loginForm.username.focus()">
 	<center>
-		<form name="loginForm" method="post" action="Login">
+		<form name="loginForm" method="post" action="loginDo.jsp">
 			<table>
 				<tr>
 					<td>Username:</td>

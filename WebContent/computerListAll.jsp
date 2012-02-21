@@ -1,16 +1,11 @@
-<%@page import="edu.unlv.cs673.echoteam.ScreenComputerListAll"%>
+<jsp:include page="verifyLogin.jsp"></jsp:include>
+<%@page import="edu.unlv.cs673.echoteam.PresentationComputerListAll"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="edu.unlv.cs673.echoteam.ComputerDAO,
-					edu.unlv.cs673.echoteam.helpers.ComputerHelper,
-					java.util.List,
-					java.util.ArrayList,
-					java.io.PrintWriter,
-					java.sql.ResultSet,
-					java.sql.SQLException" %>
+<%@ page import="edu.unlv.cs673.echoteam.ComputerDAO,edu.unlv.cs673.echoteam.helpers.DataComputer,java.util.List,java.util.ArrayList,java.io.PrintWriter,java.sql.ResultSet,java.sql.SQLException" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="header.inc"></jsp:include>
-<jsp:include page="verifyLogin.jsp"></jsp:include>
+
 
 <center>
 	<form method="GET" action='ComputerController' name="listall">
@@ -26,48 +21,9 @@
 			<th>&nbsp; &nbsp; &nbsp; Send WakeOnLAN &nbsp; &nbsp; &nbsp; </th>
 		</tr>
 	<%
-		ScreenComputerListAll screen = new ScreenComputerListAll(session);
+		PresentationComputerListAll screen = new PresentationComputerListAll(session);
 		String output = screen.display();
 		out.println(output);
-	
-// 		int currUserId = (Integer)session.getAttribute("userId");
-	
-// 		ComputerDAO computerDao = new ComputerDAO();
-// 		List<ComputerHelper> results = computerDao.selectAllComputersForUser(currUserId);
-		
-// 		for(ComputerHelper ch: results){
-// 			if (ch == null)
-// 				break;
-			
-// 			String computerId = "" + ch.getComputerId();
-// 			String computerIP = "" + ch.getComputerIP();
-// 			String networkId = "" + ch.getNetworkId();
-// 			String computerPort = "" + ch.getComputerPort();
-// 			String computerMAC = ch.getComputerMAC();
-// 			if(computerMAC==null){
-// 				computerMAC="";
-// 			}
-			
-// 			out.println("<tr>");
-// 				// Check box for Primary Key (ComputerId)
-// 				out.println("<td><input type=\"checkbox\" name=\"" + computerId + "\" />");
-// 				out.println("</td>");
-// 				out.println("<td><a href=\"computerEdit.jsp?computerId=" + computerId + "\">Edit Computer " + computerId + "</a>");
-// 				out.println("</td><td>");
-// 				out.println(computerIP);
-// 				out.println("</td><td>");
-// 				out.println(networkId);
-// 				out.println("</td><td>");
-// 				out.println(computerPort);
-// 				out.println("</td><td>");
-// 				out.println(computerMAC);
-// 				out.println("</td><td>");
-// 				out.println("<a href=\"sleepSend.jsp?host=" + computerIP + "&port=" + computerPort + "\">Send Sleep Command</a>");
-// 				out.println("</td><td>");
-// 				out.println("<a href=\"magicPacketSend.jsp?host=" + computerIP + "&macAddress=" + computerMAC + "\">Send WoL Packet</a>");
-// 				out.println("</td>");
-// 			out.println("</tr>");
-// 		}
 	%>
 	</table>
 	<p>

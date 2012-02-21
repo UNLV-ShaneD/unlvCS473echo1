@@ -16,7 +16,7 @@ public class DAO{
 	public String query = "";
 	static private String user = "";
 	static private String password = "";
-	public Connection con = null;
+	public Connection connection = null;
 	
 	/**
 	 * Creates DB connection
@@ -36,7 +36,7 @@ public class DAO{
 
 			// Connect to DB
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(dbUrl, user, password);
+			connection = DriverManager.getConnection(dbUrl, user, password);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -51,7 +51,7 @@ public class DAO{
 	 */
 	public void close(){
 		try{
-			con.close();
+			connection.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -69,7 +69,7 @@ public class DAO{
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = con.createStatement();
+			stmt = connection.createStatement();
 			rs = stmt.executeQuery(this.query);
 		} catch (Exception e) {
 			e.printStackTrace();

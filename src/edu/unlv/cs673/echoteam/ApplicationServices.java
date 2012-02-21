@@ -1,33 +1,67 @@
 package edu.unlv.cs673.echoteam;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import edu.unlv.cs673.echoteam.helpers.DataComputer;
+
 public class ApplicationServices {
-	HttpSession session;
+	DataSession session;
 
 	public ApplicationServices(HttpSession session) {
-		this.session = session;
+		this.session = new DataSession(session);
 	}
 	
-	private int getUserID() {
-		Object objectUserID = session.getAttribute("userId");
-		if (objectUserID != null ){
-			String number = "" + session.getAttribute("userId");
-			return Integer.getInteger(number, -1);
-		}
-		
-		return -1;
+	public ApplicationServices(DataSession session) {
+		this.session = session;
 	}
 
 	public boolean verifyLogin(String username, String password) {
-		int userID = getUserID();
+		// Check if the user is authenticated
+		return session.isAuthenticated(username, password);
+	}
+	
+	public String displayComputers(ComputerEvaluationCallback callback) {
+		String out = "";
 		
-		if (userID > 0) {
-			// We're authenticated
-			return true;
+		int currUserId = session.getUserID();
+ 		ComputerDAO computerDao = new ComputerDAO();
+ 		List<DataComputer> results = computerDao.selectAllComputersForUser(currUserId);
+ 		
+ 		for(DataComputer ch: results){
+ 			if (ch == null)
+ 				break;
+ 			out += callback.evaluateComputer(ch);
+ 		}
+ 		
+ 		return out;
+	}
+	
+	public void addComputer(DataComputer computer) throws Exception {
+		ComputerDAO myDao = new ComputerDAO();
+		myDao.insertComputer(computer);	
+	}
+
+	public String findComputerByID(ComputerEvaluationCallback callback, DataComputer computer) {
+		String out = "";
+		
+		int currUserId = (Integer) session.getUserID();
+		ComputerDAO computerDao = new ComputerDAO();
+		DataComputer resultComputer;
+		try {
+			resultComputer = computerDao.getComputerByID(computer);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
 		
+		if (resultComputer == null)
+			return null;
 		
-		return false;
+		out += callback.evaluateComputer(resultComputer);
+		
+		return out;
 	}
 }

@@ -49,13 +49,13 @@ public class UserDAO extends DAO {
 		String query = "";
 		query = "INSERT INTO users (userName, userPassword, userEmail) Values (?, ?, ?);";
 		PreparedStatement p = null;
-		p = con.prepareStatement(query);
+		p = connection.prepareStatement(query);
 		p.setString(1, userName);
 		p.setString(2, userPassword);
 		p.setString(3, userEmail);
 		p.execute();
 		query = "commit;";
-		p = con.prepareStatement(query);
+		p = connection.prepareStatement(query);
 		p.execute();
 	}
 	
@@ -63,7 +63,7 @@ public class UserDAO extends DAO {
 		@SuppressWarnings("unused")
 		DAO myDao = new DAO();
 		String query = "DELETE FROM users WHERE userId = ?";
-		PreparedStatement p = con.prepareStatement(query);
+		PreparedStatement p = connection.prepareStatement(query);
 		p.setInt(1, userId);
 		p.execute();
 	}
@@ -74,7 +74,7 @@ public class UserDAO extends DAO {
 		PreparedStatement p;
 		int id = 0;
 		try {
-			p = con.prepareStatement(query);
+			p = connection.prepareStatement(query);
 			if (usernames != null) {
 				for (int i = 0; i < usernames.length; i++) {
 					id = Integer.valueOf(select[i]);
@@ -91,6 +91,32 @@ public class UserDAO extends DAO {
 		}
 	}
 	
+	public int authenticateUser(String userName, String userPassword){
+		@SuppressWarnings("unused")
+		DAO myDao = new DAO();
+		String query = "";
+		query = "SELECT userId FROM users WHERE userName=? AND userPassword = ?;";
+		PreparedStatement p = null;
+		try {
+			p = connection.prepareStatement(query);
+			p.setString(1, userName);
+			p.setString(2, userPassword);
+			ResultSet rs;
+			rs = p.executeQuery();
+			
+			if(rs.next()){
+				String id = rs.getString(1);
+				return Integer.parseInt(id);	// has matching record
+			} else {
+				return -1;	// empty record set.
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;		// empty record set.
+		} finally {
+		}
+	}
+	
 	public String validUserPassword(String userName, String userPassword){
 		@SuppressWarnings("unused")
 		DAO myDao = new DAO();
@@ -98,7 +124,7 @@ public class UserDAO extends DAO {
 		query = "SELECT userId FROM users WHERE userName=? AND userPassword = ?;";
 		PreparedStatement p = null;
 		try {
-			p = con.prepareStatement(query);
+			p = connection.prepareStatement(query);
 			p.setString(1, userName);
 			p.setString(2, userPassword);
 			ResultSet rs;

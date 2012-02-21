@@ -1,3 +1,4 @@
+<jsp:include page="verifyLogin.jsp"></jsp:include>
 <%@page import="javax.servlet.jsp.tagext.TryCatchFinally"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -10,7 +11,6 @@
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="header.inc"></jsp:include>
-<jsp:include page="verifyLogin.jsp"></jsp:include>
 <%
 	MagicPacketer magicPacketer = new MagicPacketer();
 	String host = request.getParameter("host");

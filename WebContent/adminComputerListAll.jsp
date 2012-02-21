@@ -1,26 +1,19 @@
+<jsp:include page="verifyAdminLogin.jsp"></jsp:include>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 	
-<%@ page import="edu.unlv.cs673.echoteam.ComputerDAO,
-				edu.unlv.cs673.echoteam.helpers.ComputerHelper,
-				java.util.List,
-				java.util.ArrayList,
-				java.io.PrintWriter,
-				java.sql.ResultSet,
-				java.sql.SQLException" %>
+<%@ page import="edu.unlv.cs673.echoteam.ComputerDAO,edu.unlv.cs673.echoteam.helpers.DataComputer,java.util.List,java.util.ArrayList,java.io.PrintWriter,java.sql.ResultSet,java.sql.SQLException" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="header.inc"></jsp:include>
-<jsp:include page="verifyAdminLogin.jsp"></jsp:include>
 
 <center>
 	<form method="GET" action='ComputerController' name="listall">
 	<table border="1">
 	<%
 		ComputerDAO computerDao = new ComputerDAO();
-		List<ComputerHelper> results = computerDao.selectAllComputers();
-
-		%>
+			List<DataComputer> results = computerDao.selectAllComputers();
+	%>
 		<tr>
 			<th>&nbsp; &nbsp; &nbsp; Select Record &nbsp; &nbsp; &nbsp; </th>
 			<th>&nbsp; &nbsp; &nbsp; userId &nbsp; &nbsp; &nbsp; </th>
@@ -30,7 +23,7 @@
 			<th>&nbsp; &nbsp; &nbsp; computerMAC &nbsp; &nbsp; &nbsp; </th>
 		</tr>
 		<%
-		for(ComputerHelper ch: results){
+			for(DataComputer ch: results){
 			out.println("<tr>");
 				// Check box for Primary Key (ComputerId)
 				out.println("<td><input type=\"checkbox\" name=\"" + ch.getComputerId() + "\" />");
@@ -46,8 +39,8 @@
 				out.println(ch.getComputerMAC());
 				out.println("</td>");
 			out.println("</tr>");
-		}
-	%>
+				}
+		%>
 	</table>
 	<p>
 		<input type="submit" name="add" value="Add System" /> &nbsp;
