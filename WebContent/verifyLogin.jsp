@@ -1,13 +1,6 @@
+
+<%@ page import="edu.unlv.cs673.echoteam.InterfaceVerifyLogin" %>
 <%
-	int currUserId = 0; 
-	if(session.getAttribute("userId")==null){
-		currUserId = -1;
-	} else {
-		currUserId = (Integer)session.getAttribute("userId");
-	}
-		
-	// Check if invalid user
-	if(currUserId < 1){
-		response.sendRedirect("index.jsp"); // redirect to index.jsp
-	}
+	InterfaceVerifyLogin services = new InterfaceVerifyLogin(session);
+	services.verify(response);
 %>

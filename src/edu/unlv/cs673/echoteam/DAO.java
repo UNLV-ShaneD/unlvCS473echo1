@@ -13,10 +13,10 @@ import java.util.Properties;
 
 public class DAO{
 	static private String dbUrl = "";
-	public static String query = "";
+	public String query = "";
 	static private String user = "";
 	static private String password = "";
-	public static Connection con = null;
+	public Connection con = null;
 	
 	/**
 	 * Creates DB connection
@@ -49,7 +49,7 @@ public class DAO{
 	/**
 	 * Closes DB connection
 	 */
-	public static void close(){
+	public void close(){
 		try{
 			con.close();
 		}catch(Exception e){
@@ -65,12 +65,12 @@ public class DAO{
 	 */
 	public ResultSet readQuery(String query) {
 		// TODO: Add code verifying sql is of select type.
-		DAO.query = query;
+		this.query = query;
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = con.createStatement();
-			rs = stmt.executeQuery(DAO.query);
+			rs = stmt.executeQuery(this.query);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -86,10 +86,10 @@ public class DAO{
 		// TODO: Add checks that query is of "insert" type.
 		try {
 			Statement stmt = null;
-			DAO.query = query;
-			stmt.executeQuery(DAO.query);
-			DAO.query = "commit;";
-			stmt.executeQuery(DAO.query);
+			this.query = query;
+			stmt.executeQuery(this.query);
+			this.query = "commit;";
+			stmt.executeQuery(this.query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -102,7 +102,7 @@ public class DAO{
 	 */
 	public void updateQuery(String query){
 		// TODO: Add checks that query is of "udpdate" type.
-		DAO.query = query;
+		this.query = query;
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class DAO{
 	 */
 	public void deleteQuery(String query){
 		// TODO: Add checks that query is of "delete" type.
-		DAO.query = query;
+		this.query = query;
 	}
 	
 	/**
@@ -122,7 +122,7 @@ public class DAO{
 	 */
 	public void executeQuery(String query){
 		// TODO: Add checks to make sure no table drop commands, or other "bad" code.
-		DAO.query = query;
+		this.query = query;
 	}
 	
 }

@@ -1,3 +1,4 @@
+<%@page import="edu.unlv.cs673.echoteam.ScreenComputerListAll"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="edu.unlv.cs673.echoteam.ComputerDAO,
@@ -14,12 +15,6 @@
 <center>
 	<form method="GET" action='ComputerController' name="listall">
 	<table border="1">
-	<%
-		int currUserId = (Integer)session.getAttribute("userId");
-
-		ComputerDAO computerDao = new ComputerDAO();
-		List<ComputerHelper> results = computerDao.selectAllComputersForUser(currUserId);
-	%>
 		<tr>
 			<th>&nbsp; &nbsp; &nbsp; Select Record &nbsp; &nbsp; &nbsp; </th>
 			<th>&nbsp; &nbsp; &nbsp; Edit Record &nbsp; &nbsp; &nbsp; </th>
@@ -31,37 +26,48 @@
 			<th>&nbsp; &nbsp; &nbsp; Send WakeOnLAN &nbsp; &nbsp; &nbsp; </th>
 		</tr>
 	<%
-		for(ComputerHelper ch: results){
+		ScreenComputerListAll screen = new ScreenComputerListAll(session);
+		String output = screen.display();
+		out.println(output);
+	
+// 		int currUserId = (Integer)session.getAttribute("userId");
+	
+// 		ComputerDAO computerDao = new ComputerDAO();
+// 		List<ComputerHelper> results = computerDao.selectAllComputersForUser(currUserId);
+		
+// 		for(ComputerHelper ch: results){
+// 			if (ch == null)
+// 				break;
 			
-			String computerId = "" + ch.getComputerId();
-			String computerIP = "" + ch.getComputerIP();
-			String networkId = "" + ch.getNetworkId();
-			String computerPort = "" + ch.getComputerPort();
-			String computerMAC = ch.getComputerMAC();
-			if(computerMAC==null){
-				computerMAC="";
-			}
+// 			String computerId = "" + ch.getComputerId();
+// 			String computerIP = "" + ch.getComputerIP();
+// 			String networkId = "" + ch.getNetworkId();
+// 			String computerPort = "" + ch.getComputerPort();
+// 			String computerMAC = ch.getComputerMAC();
+// 			if(computerMAC==null){
+// 				computerMAC="";
+// 			}
 			
-			out.println("<tr>");
-				// Check box for Primary Key (ComputerId)
-				out.println("<td><input type=\"checkbox\" name=\"" + computerId + "\" />");
-				out.println("</td>");
-				out.println("<td><a href=\"computerEdit.jsp?computerId=" + computerId + "\">Edit Computer " + computerId + "</a>");
-				out.println("</td><td>");
-				out.println(computerIP);
-				out.println("</td><td>");
-				out.println(networkId);
-				out.println("</td><td>");
-				out.println(computerPort);
-				out.println("</td><td>");
-				out.println(computerMAC);
-				out.println("</td><td>");
-				out.println("<a href=\"sleepSend.jsp?host=" + computerIP + "&port=" + computerPort + "\">Send Sleep Command</a>");
-				out.println("</td><td>");
-				out.println("<a href=\"magicPacketSend.jsp?host=" + computerIP + "&macAddress=" + computerMAC + "\">Send WoL Packet</a>");
-				out.println("</td>");
-			out.println("</tr>");
-		}
+// 			out.println("<tr>");
+// 				// Check box for Primary Key (ComputerId)
+// 				out.println("<td><input type=\"checkbox\" name=\"" + computerId + "\" />");
+// 				out.println("</td>");
+// 				out.println("<td><a href=\"computerEdit.jsp?computerId=" + computerId + "\">Edit Computer " + computerId + "</a>");
+// 				out.println("</td><td>");
+// 				out.println(computerIP);
+// 				out.println("</td><td>");
+// 				out.println(networkId);
+// 				out.println("</td><td>");
+// 				out.println(computerPort);
+// 				out.println("</td><td>");
+// 				out.println(computerMAC);
+// 				out.println("</td><td>");
+// 				out.println("<a href=\"sleepSend.jsp?host=" + computerIP + "&port=" + computerPort + "\">Send Sleep Command</a>");
+// 				out.println("</td><td>");
+// 				out.println("<a href=\"magicPacketSend.jsp?host=" + computerIP + "&macAddress=" + computerMAC + "\">Send WoL Packet</a>");
+// 				out.println("</td>");
+// 			out.println("</tr>");
+// 		}
 	%>
 	</table>
 	<p>

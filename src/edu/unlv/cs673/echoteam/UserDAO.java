@@ -8,18 +8,16 @@ import java.util.List;
 
 import edu.unlv.cs673.echoteam.helpers.UserHelper;
 
-public class UserDAO {
+public class UserDAO extends DAO {
 	// Use DAO for the connection, but do db selects here. Return RecordSet results as a 
 	// collection of ComputerHelper objects
 	
 
 	public List<UserHelper> selectAllUsers() {
 		List<UserHelper> results = new ArrayList<UserHelper>();
-		DAO myDao = new DAO();
 		String query = "SELECT userId, userName, userPassword, userEmail FROM users;";
-		ResultSet rs = myDao.readQuery(query);
+		ResultSet rs = readQuery(query);
 		results = buildResultList(rs);
-		DAO.close();	// Clean up, close the db connection		
 
 		return results;
 	}
@@ -48,29 +46,26 @@ public class UserDAO {
 	
 	public void insertUser(String userName, String userPassword, String userEmail) throws SQLException {
 		@SuppressWarnings("unused")
-		DAO myDao = new DAO();
 		String query = "";
 		query = "INSERT INTO users (userName, userPassword, userEmail) Values (?, ?, ?);";
 		PreparedStatement p = null;
-		p = DAO.con.prepareStatement(query);
+		p = con.prepareStatement(query);
 		p.setString(1, userName);
 		p.setString(2, userPassword);
 		p.setString(3, userEmail);
 		p.execute();
 		query = "commit;";
-		p = DAO.con.prepareStatement(query);
+		p = con.prepareStatement(query);
 		p.execute();
-		DAO.close();
 	}
 	
 	public void deleteUserById(int userId) throws SQLException {
 		@SuppressWarnings("unused")
 		DAO myDao = new DAO();
 		String query = "DELETE FROM users WHERE userId = ?";
-		PreparedStatement p = DAO.con.prepareStatement(query);
+		PreparedStatement p = con.prepareStatement(query);
 		p.setInt(1, userId);
 		p.execute();
-		DAO.close();
 	}
 	
 	public void updateComptuerById(String select[], String usernames[], String passwords[], String emails[]) {
@@ -79,7 +74,7 @@ public class UserDAO {
 		PreparedStatement p;
 		int id = 0;
 		try {
-			p = DAO.con.prepareStatement(query);
+			p = con.prepareStatement(query);
 			if (usernames != null) {
 				for (int i = 0; i < usernames.length; i++) {
 					id = Integer.valueOf(select[i]);
@@ -89,7 +84,7 @@ public class UserDAO {
 					p.setInt(4, id);
 					p.execute();
 				}
-				DAO.close();
+				close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -103,7 +98,7 @@ public class UserDAO {
 		query = "SELECT userId FROM users WHERE userName=? AND userPassword = ?;";
 		PreparedStatement p = null;
 		try {
-			p = DAO.con.prepareStatement(query);
+			p = con.prepareStatement(query);
 			p.setString(1, userName);
 			p.setString(2, userPassword);
 			ResultSet rs;
@@ -119,7 +114,6 @@ public class UserDAO {
 			e.printStackTrace();
 			return "";		// empty record set.
 		} finally {
-			DAO.close();
 		}
 	}
 }
