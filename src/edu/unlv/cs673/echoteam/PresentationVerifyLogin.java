@@ -11,9 +11,6 @@ public class PresentationVerifyLogin {
 	}
 	
 	public boolean verify(HttpServletRequest request) {
-		// Reset session data
-		session.setAttribute("userId", -1);
-		
 		// Check credentials
 
 		String username = "" + request.getParameter("username");

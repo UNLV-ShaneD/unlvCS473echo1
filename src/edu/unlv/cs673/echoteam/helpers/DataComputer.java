@@ -5,8 +5,6 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.sql.Connection;
-
 public class DataComputer {
 	private int computerId = -1;
 	private int userId = -1;
@@ -65,14 +63,14 @@ public class DataComputer {
 	
 		out += "<tr>";
 			// Check box for Primary Key (ComputerId)
-			out += "<td><input type=\"checkbox\" name=\"" + computerId + "\" />";
+			out += "<td><input type=\"checkbox\" name=\"computerId\" value=" + computerId + " />";
 			out += "</td>";
 			out += "<td><a href=\"computerEdit.jsp?computerId=" + computerId + "\">Edit Computer " + computerId + "</a>";
 			out += "</td><td>";
 			out += computerIP;
 			out += "</td><td>";
-			out += "" + networkId;
-			out += "</td><td>";
+//			out += "" + networkId;
+//			out += "</td><td>";
 			out += "" + computerPort;
 			out += "</td><td>";
 			out += computerMAC;

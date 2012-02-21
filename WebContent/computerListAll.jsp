@@ -11,12 +11,12 @@
 	<form method="GET" action='ComputerController' name="listall">
 	<table border="1">
 		<tr>
-			<th>&nbsp; &nbsp; &nbsp; Select Record &nbsp; &nbsp; &nbsp; </th>
-			<th>&nbsp; &nbsp; &nbsp; Edit Record &nbsp; &nbsp; &nbsp; </th>
-			<th>&nbsp; &nbsp; &nbsp; computerIP &nbsp; &nbsp; &nbsp; </th>
-			<th>&nbsp; &nbsp; &nbsp; networkId &nbsp; &nbsp; &nbsp; </th>
-			<th>&nbsp; &nbsp; &nbsp; computerPort &nbsp; &nbsp; &nbsp; </th>
-			<th>&nbsp; &nbsp; &nbsp; computerMAC &nbsp; &nbsp; &nbsp; </th>
+			<th>&nbsp; &nbsp; &nbsp; Select &nbsp; &nbsp; &nbsp; </th>
+			<th>&nbsp; &nbsp; &nbsp; Edit &nbsp; &nbsp; &nbsp; </th>
+			<th>&nbsp; &nbsp; &nbsp; IP Address &nbsp; &nbsp; &nbsp; </th>
+<!-- 			<th>&nbsp; &nbsp; &nbsp; networkId &nbsp; &nbsp; &nbsp; </th> -->
+			<th>&nbsp; &nbsp; &nbsp; Port &nbsp; &nbsp; &nbsp; </th>
+			<th>&nbsp; &nbsp; &nbsp; MAC Address &nbsp; &nbsp; &nbsp; </th>
 			<th>&nbsp; &nbsp; &nbsp; Send Sleep &nbsp; &nbsp; &nbsp; </th>
 			<th>&nbsp; &nbsp; &nbsp; Send WakeOnLAN &nbsp; &nbsp; &nbsp; </th>
 		</tr>

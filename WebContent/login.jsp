@@ -30,7 +30,7 @@
 				</tr>
 			</table>
 		</form>
-		<font color=red> <% if (request.getAttribute("userId") == ""){
+		<font color=red> <% if (session.getAttribute("failLogin") == "true"){
 			
 			out.println("Invalid Username/Password. Please try again");
 			}%> </font>

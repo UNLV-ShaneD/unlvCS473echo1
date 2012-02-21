@@ -12,7 +12,7 @@ public class DataSession {
 	public int getUserID() {
 		Object objectUserID = httpSession.getAttribute("userId");
 		if (objectUserID != null) {
-			String number = "" + httpSession.getAttribute("userId");
+			String number = "" + objectUserID;
 			return Integer.parseInt(number);
 		}
 
