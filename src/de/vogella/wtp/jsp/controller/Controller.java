@@ -23,8 +23,7 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String forward="";
 		// Get a map of the request parameters
-		@SuppressWarnings("unchecked")
-		Map parameters = request.getParameterMap();
+		Map<String, String[]> parameters = request.getParameterMap();
 		if (parameters.containsKey("delete")){
 			forward = DELETE_JSP;
 		} else if (parameters.containsKey("edit")){
