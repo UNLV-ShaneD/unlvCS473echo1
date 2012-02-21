@@ -1,7 +1,5 @@
 package edu.unlv.cs673.echoteam;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -76,53 +74,4 @@ public class DAO{
 		}
 		return rs;
 	}
-	
-	/**
-	 * Executes a query against the db. This is indented for "inserts"
-	 * 
-	 * @param query The SQL query that contains the insert command.
-	 */
-	public void insertQuery(String query){
-		// TODO: Add checks that query is of "insert" type.
-		try {
-			Statement stmt = null;
-			this.query = query;
-			stmt.executeQuery(this.query);
-			this.query = "commit;";
-			stmt.executeQuery(this.query);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Executes a query against the db. This is indented for "updates"
-	 * 
-	 * @param query The SQL query that contains the update command.
-	 */
-	public void updateQuery(String query){
-		// TODO: Add checks that query is of "udpdate" type.
-		this.query = query;
-	}
-
-	/**
-	 * Executes a query against the db. This is indented for "deletes"
-	 * 
-	 * @param query The SQL query that contains the delete command.
-	 */
-	public void deleteQuery(String query){
-		// TODO: Add checks that query is of "delete" type.
-		this.query = query;
-	}
-	
-	/**
-	 * General method for executing other queries against the db. 
-	 * 
-	 * @param query General executable query.
-	 */
-	public void executeQuery(String query){
-		// TODO: Add checks to make sure no table drop commands, or other "bad" code.
-		this.query = query;
-	}
-	
 }

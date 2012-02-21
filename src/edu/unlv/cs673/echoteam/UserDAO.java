@@ -22,7 +22,6 @@ public class UserDAO extends DAO {
 		return results;
 	}
 
-	@SuppressWarnings({ })
 	private List<UserHelper> buildResultList(ResultSet rs) {
 		List<UserHelper> results = new ArrayList<UserHelper>();
 		try {
@@ -45,7 +44,6 @@ public class UserDAO extends DAO {
 	}
 	
 	public void insertUser(String userName, String userPassword, String userEmail) throws SQLException {
-		@SuppressWarnings("unused")
 		String query = "";
 		query = "INSERT INTO users (userName, userPassword, userEmail) Values (?, ?, ?);";
 		PreparedStatement p = null;
@@ -60,8 +58,6 @@ public class UserDAO extends DAO {
 	}
 	
 	public void deleteUserById(int userId) throws SQLException {
-		@SuppressWarnings("unused")
-		DAO myDao = new DAO();
 		String query = "DELETE FROM users WHERE userId = ?";
 		PreparedStatement p = connection.prepareStatement(query);
 		p.setInt(1, userId);
@@ -69,7 +65,6 @@ public class UserDAO extends DAO {
 	}
 	
 	public void updateComptuerById(String select[], String usernames[], String passwords[], String emails[]) {
-		DAO myDao = new DAO();
 		String query = "UPDATE users set userName = ?, userPassword = ?, userEmail = ? WHERE userID = ?";
 		PreparedStatement p;
 		int id = 0;
@@ -92,8 +87,6 @@ public class UserDAO extends DAO {
 	}
 	
 	public int authenticateUser(String userName, String userPassword){
-		@SuppressWarnings("unused")
-		DAO myDao = new DAO();
 		String query = "";
 		query = "SELECT userId FROM users WHERE userName=? AND userPassword = ?;";
 		PreparedStatement p = null;
@@ -118,8 +111,6 @@ public class UserDAO extends DAO {
 	}
 	
 	public String validUserPassword(String userName, String userPassword){
-		@SuppressWarnings("unused")
-		DAO myDao = new DAO();
 		String query = "";
 		query = "SELECT userId FROM users WHERE userName=? AND userPassword = ?;";
 		PreparedStatement p = null;

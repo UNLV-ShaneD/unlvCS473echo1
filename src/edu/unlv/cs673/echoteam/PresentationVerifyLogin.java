@@ -1,9 +1,6 @@
 package edu.unlv.cs673.echoteam;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class PresentationVerifyLogin {
@@ -14,6 +11,9 @@ public class PresentationVerifyLogin {
 	}
 	
 	public boolean verify(HttpServletRequest request) {
+		// Reset session data
+		session.setAttribute("userId", -1);
+		
 		// Check credentials
 
 		String username = "" + request.getParameter("username");

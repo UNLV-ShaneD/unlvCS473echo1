@@ -1,7 +1,5 @@
 package edu.unlv.cs673.echoteam;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import edu.unlv.cs673.echoteam.helpers.DataComputer;

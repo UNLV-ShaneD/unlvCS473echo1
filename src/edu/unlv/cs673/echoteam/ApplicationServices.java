@@ -42,7 +42,6 @@ public class ApplicationServices {
 	public String displayComputersAdmin(ComputerEvaluationCallback callback) {
 		String out = "";
 		
-		int userId = session.getUserID();
  		ComputerDAO computerDao = new ComputerDAO();
  		List<DataComputer> results = computerDao.selectAllComputers();
  		

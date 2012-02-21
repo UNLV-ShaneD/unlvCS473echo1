@@ -25,7 +25,7 @@
 		userDAO.updateComptuerById(select, usernames, passwords, emails);
 	%>
 	<center>
-	<b>User(s) Updated Successfully</b><BR> <a href="adminUserListAll.jsp">Return</a>
+	<b>User(s) Updated Successfully</b><br /> <a href="adminUserListAll.jsp">Return</a>
 </center>
 <jsp:include page="footer.inc"></jsp:include>
 </body>

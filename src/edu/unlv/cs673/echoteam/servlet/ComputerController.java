@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class ComputerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,14 +19,14 @@ public class ComputerController extends HttpServlet {
 	public void init() throws ServletException {}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
+		request.getSession(true);
 
 		// TODO: Verify user is logged in
 
 		// Check get vars to know which function to do
 		// Get a map of the request parameters
 		String forward="";
-		Map parameters = request.getParameterMap();
+		Map<String, String[]> parameters = request.getParameterMap();
 		if (parameters.containsKey("add")){
 			forward = COMPUTER_ADD_JSP;
 		} else if (parameters.containsKey("delete")){

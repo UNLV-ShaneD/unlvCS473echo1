@@ -32,7 +32,6 @@ public class ComputerDAO extends DAO {
 		return "" + result.getString(0);
 	}
 
-	@SuppressWarnings({ })
 	private List<DataComputer> buildResultList(ResultSet rs) {
 		List<DataComputer> results = new ArrayList<DataComputer>();
 		try {
