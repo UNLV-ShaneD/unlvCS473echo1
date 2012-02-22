@@ -1,9 +1,14 @@
 package edu.unlv.cs673.echoteam.helpers;
 
+import java.net.SocketException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.jamesoravec.samplecode.examples.hibernate.Requestor;
+
+import edu.unlv.cs673.echoteam.magicpacket.MagicPacketer;
 
 public class DataComputer {
 	private int computerId = -1;
@@ -128,5 +133,22 @@ public class DataComputer {
 	public void prepareIDFindStatement(PreparedStatement statement) throws SQLException {
 		statement.setInt(1, computerId);
 		statement.setInt(2, userId);
+	}
+
+	// Send magic packet to wake target computer
+	public void wake() {
+		MagicPacketer magicPacketer = new MagicPacketer();
+		try {
+			magicPacketer.Wake(computerIP, computerMAC);
+		} catch (SocketException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Send communcation to send target computer to standby
+	public void standby() {
+		Requestor sleepRequestor = new Requestor();
+		
+		sleepRequestor.run(computerIP, computerPort);
 	}
 }

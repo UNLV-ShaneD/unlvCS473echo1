@@ -109,4 +109,14 @@
     <servlet-name>MagicPacketServlet</servlet-name>
     <url-pattern>/MagicPacketServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DroidServlet</display-name>
+    <servlet-name>DroidServlet</servlet-name>
+    <servlet-class>edu.unlv.cs673.echoteam.droid.DroidServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DroidServlet</servlet-name>
+    <url-pattern>/DroidServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

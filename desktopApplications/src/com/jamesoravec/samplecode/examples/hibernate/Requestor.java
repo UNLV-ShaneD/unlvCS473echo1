@@ -77,6 +77,8 @@ public class Requestor{
 				requestSocket.close();
 			} catch (IOException ioException) {
 				ioException.printStackTrace();
+			} catch (Exception exception) {
+				exception.printStackTrace();
 			}
 		}
 	}
