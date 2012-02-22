@@ -36,7 +36,7 @@
 	      </tr>
 	      <tr>
 	        <td width="50%" align="center">MAC Address</td>
-	        <td width="50%" align="center"><input type="text" name="computerMAC" size="20"/></td>
+	        <td width="50%" align="center"><input type="text" name="computerMAC" size="20" value="00:24:8C:9E:17:B4"/></td>
 	      </tr>
 	    </table>
 	    </center>

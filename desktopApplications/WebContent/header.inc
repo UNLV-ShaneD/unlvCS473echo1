@@ -6,5 +6,7 @@
 <body>
 <center>
 	<h1>Idle Personal Network Energy Saver System</h1>
-	<i>This project's purpose is to help people save power by having their idle computers sleep/hibernate when they are not in use.</i> 
+	<i>This project's purpose is to help people save power by having their idle computers sleep/hibernate when they are not in use.</i>
+	<br/>
+  <a href="/CS673Project1DynamicWebProject">Home</a>
 </center><br /><br />
