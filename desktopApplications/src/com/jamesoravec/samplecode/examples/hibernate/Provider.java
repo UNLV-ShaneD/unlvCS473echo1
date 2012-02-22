@@ -75,15 +75,18 @@ public class Provider{
 						//Process p = Runtime.getRuntime().exec("shutdown -h");
 						// Use notepad.exe for initial testing purposes.
 						Process p = Runtime.getRuntime().exec("notepad.exe");
-						p.waitFor();
+//						p.waitFor();
+						
+						break;
 					}
 				} catch (ClassNotFoundException e) {
 					System.err.println("Data received in unknown format");
 					e.printStackTrace();
-				} catch (InterruptedException e) {
-					System.err.println("Error issuing windows command to hibernate");
-					e.printStackTrace();
 				}
+//				catch (InterruptedException e) {
+//					System.err.println("Error issuing windows command to hibernate");
+//					e.printStackTrace();
+//				}
 			}
 		} catch (IOException ioException) {
 			ioException.printStackTrace();

@@ -24,18 +24,18 @@
 	      </tr>
 	      <tr>
 	        <td width="50%" align="center">
-	          <p align="center">computerIP</p></td>
+	          <p align="center">IP Address/Host</p></td>
 	        <td width="50%" align="center">
 	          <p align="center"><input type="text" name="computerIP" size="20" /></p></td>
 	      </tr>
 	      <tr>
 	        <td width="50%" align="center">
-	          <p align="center">computerPort</p></td>
+	          <p align="center">Sleep Port</p></td>
 	        <td width="50%" align="center">
-	          <p align="center"><input type="text" name="computerPort" size="20" value="9"/></p></td>
+	          <p align="center"><input type="text" name="computerPort" size="20" value="2004"/></p></td>
 	      </tr>
 	      <tr>
-	        <td width="50%" align="center">computerMAC</td>
+	        <td width="50%" align="center">MAC Address</td>
 	        <td width="50%" align="center"><input type="text" name="computerMAC" size="20"/></td>
 	      </tr>
 	    </table>

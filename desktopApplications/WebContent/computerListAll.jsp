@@ -13,7 +13,7 @@
 		<tr>
 			<th>&nbsp; &nbsp; &nbsp; Select &nbsp; &nbsp; &nbsp; </th>
 			<th>&nbsp; &nbsp; &nbsp; Edit &nbsp; &nbsp; &nbsp; </th>
-			<th>&nbsp; &nbsp; &nbsp; IP Address &nbsp; &nbsp; &nbsp; </th>
+			<th>&nbsp; &nbsp; &nbsp; Host &nbsp; &nbsp; &nbsp; </th>
 <!-- 			<th>&nbsp; &nbsp; &nbsp; networkId &nbsp; &nbsp; &nbsp; </th> -->
 			<th>&nbsp; &nbsp; &nbsp; Port &nbsp; &nbsp; &nbsp; </th>
 			<th>&nbsp; &nbsp; &nbsp; MAC Address &nbsp; &nbsp; &nbsp; </th>

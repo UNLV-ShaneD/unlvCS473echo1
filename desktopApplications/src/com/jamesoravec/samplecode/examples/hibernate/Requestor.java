@@ -15,6 +15,7 @@ package com.jamesoravec.samplecode.examples.hibernate;
 
 import java.io.*;
 import java.net.*;
+
 import com.jamesoravec.samplecode.examples.hibernate.ClientServerConstants;	// In case we change the package when integrating
 
 public class Requestor{
@@ -36,13 +37,14 @@ public class Requestor{
 	 * This is the logic which will connect to the provider to
 	 * request that it hibernate itself.
 	 */
-	public void run(String serverUrl, int port) {
+	public void run(String host, int port) {
 		try{
 			//1. creating a socket to connect to the server
 			// TODO: Pull computer
-			
-			requestSocket = new Socket(serverUrl, port);
-			System.out.println("Connected to localhost in port 2004");
+
+			InetAddress ipAddress = InetAddress.getByName(host);
+			requestSocket = new Socket(ipAddress, port);
+			System.out.println("Connected to " + host + " in port 2004");
 			//2. get Input and Output streams
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
@@ -59,6 +61,8 @@ public class Requestor{
 						//sendMessage(Password);
 				} catch (ClassNotFoundException classNot) {
 					System.err.println("data received in unknown format");
+				} catch (IOException exception) {
+					message = "byte";
 				}
 			} while (!message.equals("bye"));
 		} catch (UnknownHostException unknownHost) {

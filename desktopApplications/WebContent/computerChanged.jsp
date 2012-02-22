@@ -29,7 +29,7 @@
 		computerDao.updateComputers(select, IPs, Ports, MACs);
 	%>
 	<center>
-	<b>Systems(s) Updated Successfully</b><BR> <a href="computerListAll.jsp">Return</a>
+	<b>Systems(s) Updated Successfully</b><br /> <a href="computerListAll.jsp">Return</a>
 </center>
 <jsp:include page="footer.inc"></jsp:include>
 </body>
