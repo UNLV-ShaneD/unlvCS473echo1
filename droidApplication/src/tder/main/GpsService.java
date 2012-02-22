@@ -44,6 +44,8 @@ public class GpsService extends Service {
 	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
+		if (intent == null)
+			return;
 
 		// Get the GpsService parameters
 		serviceConfiguration = intent.getParcelableExtra("tder.main.configuration");

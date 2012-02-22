@@ -16,20 +16,20 @@ public class ApplicationServices {
 	void login(final LoginCallback callback, final LoginData loginData) {
 		DomainLogin domainLogin = new DomainLogin(context, callback, loginData);
 		Thread thread = new Thread(domainLogin);
-		thread.run();
+		thread.start();
 	}
 
 	void updateCoordinates(final ServiceConfiguration serviceConfiguration) {
 		DomainUpdateCoordinates domainUpdateCoordinates = new DomainUpdateCoordinates(
 				context, serviceConfiguration);
 		Thread thread = new Thread(domainUpdateCoordinates);
-		thread.run();
+		thread.start();
 	}
 
 	void computerCommand(LoginData loginData, ServerCommandType serverCommandType) {
 		DomainCommand domainCommand = new DomainCommand(loginData, serverCommandType);
 		Thread thread = new Thread(domainCommand);
-		thread.run();
+		thread.start();
 	}
 
 	void computerAway(LoginData loginData) {

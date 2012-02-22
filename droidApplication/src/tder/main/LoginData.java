@@ -20,32 +20,17 @@ public class LoginData implements Parcelable, Serializable {
 
 	public String getAuthenticationString() throws URISyntaxException {
 		URI uri;
-		try {
-			uri = new URI("http", null, host, 80, "/login", URLEncoder.encode(
-					"userid=" + userid + "&password=" + password, "UTF-8"),
-					null);
-			return uri.toString();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return null;
+		uri = new URI("http", null, host, 8080, "/CS673Project1DynamicWebProject/DroidServlet", "action=verify&username=" + userid + "&password=" + password,
+				null);
+//			uri = new URI("http", host, /login, fragment)
+		return uri.toString();
 	}
 
 	public String getCommandString(ServerCommandType serverCommandType) throws URISyntaxException {
 		URI uri;
-		try {
-			uri = new URI("http", null, host, 80, "/" + serverCommandType.page, URLEncoder.encode(
-					"userid=" + userid + "&password=" + password, "UTF-8"),
-					null);
-			return uri.toString();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return null;
+		uri = new URI("http", null, host, 8080, "/CS673Project1DynamicWebProject/DroidServlet", "action=" + serverCommandType.action + "&username=" + userid + "&password=" + password,
+				null);
+		return uri.toString();
 	}
 
 	public LoginData() {

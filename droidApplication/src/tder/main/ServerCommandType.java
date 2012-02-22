@@ -1,13 +1,14 @@
 package tder.main;
 
 public enum ServerCommandType {
-	WAKE ("wake.jsp"),
-	STANDBY ("standby.jsp"),
-	HIBERNATE ("hibernate.jsp");
+	VERIFY ("verify"),
+	WAKE ("wake"),
+	STANDBY ("standby"),
+	HIBERNATE ("hibernate");
 	
-	String page;
+	String action;
 	
-	private ServerCommandType(String page) {
-		this.page = page;
+	private ServerCommandType(String action) {
+		this.action = action;
 	}
 }
